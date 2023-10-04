@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:StudyBug.ViewModels"
+             x:Class="StudyBug.Views.Profile">
+
+    <ContentPage.BindingContext>
+        <vm:ProfileView/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+
+        <StackLayout>
+            <Label  
+                Text="Hello World"
+                FontSize="Medium"
+                TextColor="Black"
+                HorizontalOptions="CenterAndExpand"
+                />
+            <Button Text="App Settings" Command="{Binding GotoSettings}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

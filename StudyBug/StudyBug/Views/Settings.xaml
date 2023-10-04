@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:StudyBug.ViewModels"
+             x:Class="StudyBug.Views.Settings">
+
+    <ContentPage.BindingContext>
+        <vm:SettingsView/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="App Settings"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Button Text="Save Changes" Command="{Binding GotoProfile}"/>
+            <Picker
+                Title="Select Course"
+                TitleColor="Black"
+                ItemsSource="{Binding Courses}"
+                SelectedItem="{Binding SelectedCourse, Mode=TwoWay}"
+                />
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Add Course"  Command="{Binding AddCommand}"/>
+                <Button Text="Delete Course" HorizontalOptions="CenterAndExpand" />
+                <Button Text="Edit Course"  Command="{Binding GotoEditCourse}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

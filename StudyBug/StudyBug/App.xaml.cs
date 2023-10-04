@@ -1,0 +1,37 @@
+﻿using StudyBug.Models;
+using StudyBug.Services;
+using StudyBug.Views;
+using System;
+using System.Collections.ObjectModel;
+using System.Security.Cryptography.X509Certificates;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace StudyBug
+{
+    public partial class App : Application
+    {
+        public static Course ActiveCourse;
+        public App()
+        {
+            InitializeComponent();
+            MainPage = new AppShell();
+            ActiveCourse = new Course();
+    }
+
+        protected override void OnStart()
+        {
+        }
+
+        protected override void OnSleep()
+        {
+        }
+
+        protected override void OnResume()
+        {
+        }
+        
+        
+
+    }
+}

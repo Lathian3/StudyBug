@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:StudyBug.ViewModels"
+             x:Class="StudyBug.Views.Classes"
+             Title="{Binding Title}"
+             >
+
+    <ContentPage.BindingContext>
+        <vm:ClassesView/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ListView
+            ItemsSource="{Binding Courses}"
+            SeparatorVisibility="None"
+            SelectedItem="{Binding SelectedCourse, Mode=TwoWay}"
+            
+            >
+            <ListView.Header>
+                <StackLayout>
+                    <Label Text="Select Class"/>
+                </StackLayout>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" TextColor="Black"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Footer>
+                <StackLayout>
+                    <Button Text="Add Class" Command="{Binding AddCommand}"/>
+                    <Button Text="Save New Notes" Command="{Binding UpdateCommand}"/>
+                </StackLayout>
+            </ListView.Footer>
+        </ListView>
+        
+    </ContentPage.Content>
+</ContentPage>

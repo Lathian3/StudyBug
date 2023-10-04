@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:StudyBug.ViewModels"
+             x:Class="StudyBug.Views.EditCourse">
+
+    <ContentPage.BindingContext>
+        <vm:EditCourseView/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Placeholder="Course Name" Text="{Binding CurrentCourse}"/>
+            <Entry Placeholder="Weekly Goal" Text="{Binding CurrentGoal}"/>
+            <Button Text="Submit Changes" Command="{Binding GotoSettings}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
