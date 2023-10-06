@@ -18,6 +18,7 @@ namespace StudyBug
             Routing.RegisterRoute(nameof(Settings), typeof(Settings));
             Routing.RegisterRoute(nameof(ClassNotes), typeof(ClassNotes));
             Routing.RegisterRoute(nameof(EditCourse), typeof(EditCourse));
+            Routing.RegisterRoute(nameof(Login), typeof(Login));
         }
 
     }

@@ -29,6 +29,10 @@
         </ResourceDictionary>
     </Shell.Resources>
 
+    <ShellItem Route="Login" FlyoutItemIsVisible="False">
+        <ShellContent Title="Login" ContentTemplate="{DataTemplate local:Login}"/>
+    </ShellItem>
+    
     <TabBar>
         <ShellContent Title="Profile" Route="Profile" ContentTemplate="{DataTemplate local:Profile}"/>
         <ShellContent Title="Timer" Route="Timer" ContentTemplate="{DataTemplate local:Timer}"/>
@@ -39,9 +43,7 @@
         If you would like to navigate to this content you can do so by calling
         await Shell.Current.GoToAsync("//LoginPage");
     -->
-    <TabBar>
-
-    </TabBar>
+    
 
 
 </Shell>

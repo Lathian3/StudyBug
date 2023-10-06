@@ -2,20 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:vm="clr-namespace:StudyBug.ViewModels"
-             x:Class="StudyBug.Views.EditCourse"
-             Shell.TabBarIsVisible="False"
+             x:Class="StudyBug.Views.Login"
+             Shell.FlyoutBehavior="Disabled"
              Shell.NavBarIsVisible="False"
              >
 
     <ContentPage.BindingContext>
-        <vm:EditCourseView/>
+        <vm:LoginView/>
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
         <StackLayout>
-            <Entry Placeholder="Course Name" Text="{Binding CurrentCourse}"/>
-            <Entry Placeholder="Weekly Goal" Text="{Binding CurrentGoal}"/>
-            <Button Text="Submit Changes" Command="{Binding GotoSettings}"/>
+            <Button Text="Login" Command="{Binding LoginCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

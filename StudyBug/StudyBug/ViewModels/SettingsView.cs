@@ -56,16 +56,15 @@ namespace StudyBug.ViewModels
                 OnPropertyChanged();
             }
         }
-
         async public void EditPage()
         {
-            var route = $"{nameof(EditCourse)}";
+            var route = $"/{nameof(EditCourse)}";
             await Shell.Current.GoToAsync(route);
         }
 
         async public void ProfilePage()
         {
-            var route = $"{nameof(Profile)}";
+            var route = $"//{nameof(Profile)}";
             await Shell.Current.GoToAsync(route);
         }
 

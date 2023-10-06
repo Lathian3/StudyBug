@@ -4,7 +4,7 @@ using System.Text;
 
 namespace StudyBug.Models
 {
-    class User
+    public class User
     {
     }
 }

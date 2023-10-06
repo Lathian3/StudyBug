@@ -12,15 +12,19 @@ namespace StudyBug
     public partial class App : Application
     {
         public static Course ActiveCourse;
+
+        public static User ActiveUser;
         public App()
         {
             InitializeComponent();
             MainPage = new AppShell();
             ActiveCourse = new Course();
-    }
+            ActiveUser = new User();
+            }
 
         protected override void OnStart()
         {
+        
         }
 
         protected override void OnSleep()
