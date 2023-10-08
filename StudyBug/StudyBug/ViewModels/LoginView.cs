@@ -1,4 +1,5 @@
-﻿using StudyBug.Views;
+﻿using StudyBug.Services;
+using StudyBug.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,8 +17,20 @@ namespace StudyBug.ViewModels
 
         public async void Login()
         {
-            var route = $"//{nameof(Profile)}";
-            await Shell.Current.GoToAsync(route);
+            await DatabaseService.GetUser();
+
+            var route = "";
+
+            if(App.ActiveUser == null)
+            {
+                route = $"{nameof(Registration)}";
+                await Shell.Current.GoToAsync(route);
+            }
+            else {
+                route = $"//{nameof(Profile)}";
+                await Shell.Current.GoToAsync(route);
+            }
+
         }
 
     }

@@ -18,45 +18,38 @@ namespace StudyBug.ViewModels
     
     public class ClassesView : BindableObject
     {
-
-        public ObservableRangeCollection<Course> Courses { get; set; }
         public  AsyncCommand RefreshCommand { get; }
-        public AsyncCommand AddCommand { get; }
-        public AsyncCommand<Course> RemoveCommand { get; }   
+        public AsyncCommand AddCommand { get; } 
         public AsyncCommand UpdateCommand { get; }
-        public ICommand GotoClassNotes { get; }
+        public ICommand ClassNotes { get; }
+        public ObservableRangeCollection<Course> Courses { get; }
         
         public ClassesView() {
 
-            Courses = new ObservableRangeCollection<Course>();
             RefreshCommand = new AsyncCommand(Refresh);
             AddCommand = new AsyncCommand(Add);
-            RemoveCommand = new AsyncCommand<Course>(Remove);
-            GotoClassNotes = new Xamarin.Forms.Command(notesPage);
+            ClassNotes = new Xamarin.Forms.Command(notesPage);
             UpdateCommand = new AsyncCommand(Update);
-
+            Courses = new ObservableRangeCollection<Course>();
+            
             Refresh();
         }
 
         string title = "Class List";
+
         public string Title
         {
             get => title;
         }
-
-        Course selectedCourse;
         public Course SelectedCourse
         {
-            get { return selectedCourse; } 
+            get { return App.ActiveCourse; } 
             set 
             {
                 if (value != null) 
                 {
                     App.ActiveCourse = value;
-                    notesPage();
-                    value = null;
                 }
-                selectedCourse = value;
                 OnPropertyChanged();
             }
         }
@@ -70,20 +63,14 @@ namespace StudyBug.ViewModels
         async Task Add()
         {
             var name = await App.Current.MainPage.DisplayPromptAsync("Name", "Name");
-            await CourseService.AddCourse(name);
+            await DatabaseService.AddCourse(name);
             await Refresh();
         }
 
         async Task Update()
         {
-           await CourseService.Update(Courses);
+           await DatabaseService.Update(Courses);
            await Refresh();
-        }
-
-        async Task Remove(Course course)
-        {
-            await CourseService.RemoveCourse(course.Id);
-            await Refresh();
         }
 
         public bool IsBusy;
@@ -95,7 +82,7 @@ namespace StudyBug.ViewModels
 
             Courses.Clear();
 
-            var courses = await CourseService.GetCourse();
+            var courses = await DatabaseService.GetCourse();
 
             Courses.AddRange(courses);
 

@@ -30,7 +30,8 @@
             <ListView.Footer>
                 <StackLayout>
                     <Button Text="Add Class" Command="{Binding AddCommand}"/>
-                    <Button Text="Save New Notes" Command="{Binding UpdateCommand}"/>
+                    <Button Text="Add Note" Command="{Binding ClassNotes}"/>
+                    <Button Text="Save" Command="{Binding UpdateCommand}"/>
                 </StackLayout>
             </ListView.Footer>
         </ListView>

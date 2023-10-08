@@ -1,4 +1,5 @@
-﻿using StudyBug.Models;
+﻿using MvvmHelpers;
+using StudyBug.Models;
 using StudyBug.Services;
 using StudyBug.Views;
 using System;
@@ -14,17 +15,18 @@ namespace StudyBug
         public static Course ActiveCourse;
 
         public static User ActiveUser;
+
         public App()
         {
             InitializeComponent();
             MainPage = new AppShell();
             ActiveCourse = new Course();
             ActiveUser = new User();
-            }
+        }
 
         protected override void OnStart()
         {
-        
+            DatabaseService.Init();
         }
 
         protected override void OnSleep()

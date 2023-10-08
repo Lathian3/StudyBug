@@ -18,7 +18,6 @@ namespace StudyBug.ViewModels
     public class TimerView : BindableObject
     {
         public ObservableRangeCollection<Course> Courses { get; set; }
-
         public ICommand SetActiveCourse { get; }
 
         public TimerView()
@@ -47,7 +46,7 @@ namespace StudyBug.ViewModels
         async Task LoadCourses()
         {
             Courses.Clear();
-            var courses = await CourseService.GetCourse();
+            var courses = await DatabaseService.GetCourse();
             Courses.AddRange(courses);
         }
 

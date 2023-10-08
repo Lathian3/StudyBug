@@ -10,10 +10,10 @@ using Xamarin.Essentials;
 
 namespace StudyBug.Services
 {
-    public static class CourseService
+    public static class DatabaseService
     {
         static SQLiteAsyncConnection db;
-        static async Task Init() 
+        public static async Task Init() 
         {
             if (db == null)
             {
@@ -23,12 +23,12 @@ namespace StudyBug.Services
             }
             
             await db.CreateTableAsync<Course>();
-              
+            await db.CreateTableAsync<User>();
+            await db.CreateTableAsync<Reminder>();
             
         }
         public static async Task AddCourse(string name)
         {
-            await Init();
             var course = new Course
             { 
                 Name = name
@@ -36,22 +36,31 @@ namespace StudyBug.Services
 
             await db.InsertAsync(course);
         }
+        public static async Task AddUser()
+        {
+            await db.InsertAsync(App.ActiveUser);
+        }
 
         public static async Task RemoveCourse(int id)
         {
-            await Init();
             await db.DeleteAsync<Course>(id);
         }
         public static async Task<IEnumerable<Course>> GetCourse()
         {
-            await Init();
-            var schedule = await db.Table<Course>().ToListAsync();
-            return schedule;
+            return await db.Table<Course>().ToListAsync();
+        }
+        public static async Task<IEnumerable<User>> GetUsers()
+        {
+            return await db.Table<User>().ToListAsync();
+        }
+        public static async Task GetUser() 
+        {
+            User user = await db.Table<User>().FirstOrDefaultAsync();
+            App.ActiveUser = user;
         }
 
         public static async Task Update(IEnumerable objects)
         {
-            await Init();
             await db.UpdateAllAsync(objects);
         }
 

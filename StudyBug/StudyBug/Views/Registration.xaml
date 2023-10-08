@@ -2,22 +2,19 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:vm="clr-namespace:StudyBug.ViewModels"
-             x:Class="StudyBug.Views.Profile">
+             x:Class="StudyBug.Views.Registration">
 
     <ContentPage.BindingContext>
-        <vm:ProfileView/>
+        <vm:RegistrationView/>
     </ContentPage.BindingContext>
-
+    
     <ContentPage.Content>
-
         <StackLayout>
-            <Label  
-                Text="{Binding Greeting}"
-                FontSize="Medium"
-                TextColor="Black"
-                HorizontalOptions="CenterAndExpand"
-                />
-            <Button Text="App Settings" Command="{Binding GotoSettings}" />
+            <Label Text="Name"/>
+            <Entry Text="{Binding UserName}" ReturnType="Done"/>
+            <Label Text="Weekly Hour Goal"/>
+            <Entry Text="{Binding Goal}" ReturnType="Done" Keyboard="Numeric"/>
+            <Button Text="Save" Command="{Binding Profile}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

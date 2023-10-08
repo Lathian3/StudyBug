@@ -12,6 +12,12 @@ namespace StudyBug.ViewModels
     public class ProfileView : BindableObject
     {
         public ICommand GotoSettings { get; }
+
+        public string Greeting 
+        {
+            get { return "Hello " + App.ActiveUser.Name; }
+        }
+
         public ProfileView()
         {
             GotoSettings = new Command(NavToSettings);

@@ -6,7 +6,6 @@
              Shell.TabBarIsVisible="False"
              Shell.NavBarIsVisible="False"
              >
-
     <ContentPage.BindingContext>
         <vm:SettingsView/>
     </ContentPage.BindingContext>
@@ -16,18 +15,46 @@
             <Label Text="App Settings"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <Button Text="Save Changes" Command="{Binding GotoProfile}"/>
-            <Picker
-                Title="Select Course"
-                TitleColor="Black"
-                ItemsSource="{Binding Courses}"
-                ItemDisplayBinding="{Binding Name}"
-                SelectedItem="{Binding SelectedCourse, Mode=TwoWay}"
+            <CarouselView
+                ItemsSource="{Binding Users}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                IsSwipeEnabled="False"
+                >
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="Name" VerticalOptions="Center"/>
+                            <Entry Text="{Binding Name}"/>
+                            <Label Text="Weekly Goal" VerticalOptions="Center"/>
+                            <Entry Text="{Binding WeeklyGoal}"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <Label Text="Class Settings"
+                HorizontalOptions="Center"
                 />
+            <CarouselView
+                ItemsSource="{Binding Courses}"
+                CurrentItemChangedCommand="{Binding CourseSelected}"
+                CurrentItemChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=CurrentItem}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                >
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding Name}" VerticalOptions="Center"/>
+                            <Entry Text="{Binding Name}"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <Button Text="Save Changes" Command="{Binding GotoProfile}"/>
             <StackLayout Orientation="Horizontal">
                 <Button Text="Add Course"  Command="{Binding AddCommand}"/>
-                <Button Text="Delete Course" HorizontalOptions="CenterAndExpand" />
-                <Button Text="Edit Course"  Command="{Binding GotoEditCourse}"/>
+                <Button Text="Delete Course" HorizontalOptions="EndAndExpand" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
