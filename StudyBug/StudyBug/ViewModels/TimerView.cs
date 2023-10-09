@@ -5,6 +5,7 @@ using StudyBug.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,30 +20,21 @@ namespace StudyBug.ViewModels
     {
         public ObservableRangeCollection<Course> Courses { get; set; }
         public ICommand SetActiveCourse { get; }
-
+        public ICommand CourseSelected => new Xamarin.Forms.Command<Course>((item) =>
+        {   
+            App.ActiveCourse = item;
+            stopwatch.Reset();
+        });
+        public AsyncCommand Save { get; }
         public TimerView()
         {
             StartTimer = new Xamarin.Forms.Command(OnStart);
             StopTimer = new Xamarin.Forms.Command(OnPause);
             Courses = new ObservableRangeCollection<Course>();
+            Save = new AsyncCommand(Update);
             LoadCourses();
         }
 
-        Course selectedCourse;
-        public Course SelectedCourse
-        {
-            get { return selectedCourse; }
-            set
-            {
-                if (value != null)
-                {
-                    App.ActiveCourse = value;
-                    value = null;
-                }
-                selectedCourse = value;
-                OnPropertyChanged();
-            }
-        }
         async Task LoadCourses()
         {
             Courses.Clear();
@@ -59,7 +51,19 @@ namespace StudyBug.ViewModels
         {
             get => title;
         }
+        async Task Update()
+        {
+            await DatabaseService.Update(Courses);
+            await Refresh();
+        }
+        async Task Refresh()
+        {
+            Courses.Clear();
 
+            var courses = await DatabaseService.GetCourse();
+
+            Courses.AddRange(courses);
+        }
         public string DisplayEllapsedTime
         {
             get => EllapsedTime;
@@ -101,11 +105,13 @@ namespace StudyBug.ViewModels
             aTimer.Enabled = true;
         }
 
-        private void OnTimedEvent(Object source, ElapsedEventArgs e)
+        private async void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
             ts = stopwatch.Elapsed;
+            App.ActiveCourse.currentTimeStudied += .5;
             DisplayEllapsedTime = String.Format("{0:00}:{1:00}:{2:00}",
             ts.Hours, ts.Minutes, ts.Seconds);
+
         }
 
     }

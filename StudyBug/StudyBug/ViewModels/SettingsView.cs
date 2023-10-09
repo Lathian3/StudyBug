@@ -19,7 +19,7 @@ namespace StudyBug.ViewModels
     {
         public AsyncCommand RefreshCommand { get; }
         public AsyncCommand AddCommand { get; }
-        public AsyncCommand<Course> RemoveCommand { get; }
+        public AsyncCommand RemoveCommand { get; }
         public AsyncCommand UpdateCommand { get; }
         public ICommand GotoProfile { get; }
         public ICommand CourseSelected => new Xamarin.Forms.Command<Course>((item) =>
@@ -31,12 +31,11 @@ namespace StudyBug.ViewModels
         {
             RefreshCommand = new AsyncCommand(Refresh);
             AddCommand = new AsyncCommand(Add);
-            RemoveCommand = new AsyncCommand<Course>(Remove);
+            RemoveCommand = new AsyncCommand(Remove);
             GotoProfile = new Xamarin.Forms.Command(ProfilePage);
             UpdateCommand = new AsyncCommand(Update);
             Courses = new ObservableRangeCollection<Course>();
             Users = new ObservableRangeCollection<User>();
-            
             LoadData();
         }
         public ObservableRangeCollection<Course> Courses { get; set; }
@@ -50,7 +49,7 @@ namespace StudyBug.ViewModels
             var users = await DatabaseService.GetUsers();
             Users.AddRange(users);
         }
-
+        
         async public void ProfilePage()
         {
             await Update();
@@ -60,7 +59,7 @@ namespace StudyBug.ViewModels
 
         async Task Add()
         {
-            var name = await App.Current.MainPage.DisplayPromptAsync("Name", "Name");
+            var name = await App.Current.MainPage.DisplayPromptAsync("Name", "Name", "OK", "");
             await DatabaseService.AddCourse(name);
             await Refresh();
         }
@@ -71,16 +70,16 @@ namespace StudyBug.ViewModels
             await Refresh();
         }
 
-        async Task Remove(Course course)
+        async Task Remove()
         {
-            await DatabaseService.RemoveCourse(course.Id);
+            await DatabaseService.RemoveCourse(App.ActiveCourse.Id);
             await Refresh();
         }
 
         public bool IsBusy;
         async Task Refresh()
         {
-            IsBusy = true;
+            IsBusy = false;
 
             await Task.Delay(1000);
 
@@ -90,7 +89,7 @@ namespace StudyBug.ViewModels
 
             Courses.AddRange(courses);
 
-            IsBusy = false;
+            IsBusy = true;
         }
     }
 

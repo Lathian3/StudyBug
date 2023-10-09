@@ -18,15 +18,25 @@
                    FontSize="60"
                    VerticalOptions="StartAndExpand"
                    Text="{Binding DisplayEllapsedTime}"/>
-            <Picker
-                Title="Select Course"
-                TitleColor="Black"
+            <CarouselView
                 ItemsSource="{Binding Courses}"
-                SelectedItem="{Binding SelectedCourse, Mode=TwoWay}"
-                />
+                CurrentItemChangedCommand="{Binding CourseSelected}"
+                CurrentItemChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=CurrentItem}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                >
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding Name}" VerticalOptions="Center"/>
+                            <Label Text="{Binding currentTimeStudied}"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
             <Button x:Name="StartTimer" Text="Start" Command="{Binding StartTimer}"/>
             <Button x:Name="PauseTiemr" Text="Pause" Command="{Binding StopTimer}"/>
-
+            <Button Text="Save Session" Command="{Binding Save}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

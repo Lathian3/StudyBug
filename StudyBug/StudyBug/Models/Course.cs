@@ -12,7 +12,7 @@ namespace StudyBug.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int Goal { get; set; }
-        public int currentTimeStudied { get; set; }
+        public Double currentTimeStudied { get; set; }
         public string Description { get; set; }
 
     }

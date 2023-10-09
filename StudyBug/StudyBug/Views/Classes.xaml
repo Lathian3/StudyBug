@@ -15,7 +15,6 @@
             ItemsSource="{Binding Courses}"
             SeparatorVisibility="None"
             SelectedItem="{Binding SelectedCourse, Mode=TwoWay}"
-            
             >
             <ListView.Header>
                 <StackLayout>

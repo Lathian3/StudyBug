@@ -13,7 +13,7 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Login" Command="{Binding LoginCommand}" />
+            <Button Text="Login" Command="{Binding LoginCommand}" VerticalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

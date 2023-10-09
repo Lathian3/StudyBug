@@ -27,7 +27,7 @@
                             <Label Text="Name" VerticalOptions="Center"/>
                             <Entry Text="{Binding Name}"/>
                             <Label Text="Weekly Goal" VerticalOptions="Center"/>
-                            <Entry Text="{Binding WeeklyGoal}"/>
+                            <Entry Text="{Binding WeeklyGoal}" Keyboard="Numeric" MaxLength="2"/>
                         </StackLayout>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
@@ -47,6 +47,8 @@
                         <StackLayout>
                             <Label Text="{Binding Name}" VerticalOptions="Center"/>
                             <Entry Text="{Binding Name}"/>
+                            <Label Text="Weekly Goal"/>
+                            <Entry Text="{Binding Goal}"/>
                         </StackLayout>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
@@ -54,7 +56,7 @@
             <Button Text="Save Changes" Command="{Binding GotoProfile}"/>
             <StackLayout Orientation="Horizontal">
                 <Button Text="Add Course"  Command="{Binding AddCommand}"/>
-                <Button Text="Delete Course" HorizontalOptions="EndAndExpand" />
+                <Button Text="Delete Course" HorizontalOptions="EndAndExpand" Command="{Binding RemoveCommand}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

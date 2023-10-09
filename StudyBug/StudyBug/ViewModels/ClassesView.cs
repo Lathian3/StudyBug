@@ -35,6 +35,8 @@ namespace StudyBug.ViewModels
             Refresh();
         }
 
+        
+
         string title = "Class List";
 
         public string Title
@@ -53,7 +55,9 @@ namespace StudyBug.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
+        public bool IsBusy { get; private set; }
+
         async public void notesPage() 
         {
             var route = $"{nameof(ClassNotes)}";
@@ -73,18 +77,18 @@ namespace StudyBug.ViewModels
            await Refresh();
         }
 
-        public bool IsBusy;
-        async Task Refresh()
+        
+        public async Task Refresh()
         {
             IsBusy = true;
-
-            await Task.Delay(1000);
 
             Courses.Clear();
 
             var courses = await DatabaseService.GetCourse();
 
             Courses.AddRange(courses);
+
+            await Task.Delay(1000);
 
             IsBusy = false;
         }
