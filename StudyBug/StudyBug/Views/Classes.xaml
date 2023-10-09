@@ -16,7 +16,6 @@
             SeparatorVisibility="None"
             SelectedItem="{Binding SelectedCourse, Mode=TwoWay}"
             HasUnevenRows="True"
-            SeparatorColor=
             >
             <ListView.Header>
                 
