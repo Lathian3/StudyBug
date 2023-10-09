@@ -15,15 +15,22 @@
             ItemsSource="{Binding Courses}"
             SeparatorVisibility="None"
             SelectedItem="{Binding SelectedCourse, Mode=TwoWay}"
+            HasUnevenRows="True"
+            SeparatorColor=
             >
             <ListView.Header>
-                <StackLayout>
-                    <Label Text="Select Class"/>
-                </StackLayout>
+                
+                <Label Text="Select Class"
+                       FontSize="Title"
+                       Padding="10"/>
+                
             </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Name}" TextColor="Black"/>
+                    <TextCell Text="{Binding Name}" 
+                              TextColor="Black"
+                              Detail="{Binding Description}"
+                              />
                 </DataTemplate>
             </ListView.ItemTemplate>
             <ListView.Footer>

@@ -11,7 +11,7 @@ namespace StudyBug.Models
         [PrimaryKey,AutoIncrement]
         public int Id { get; set; }
         public string Name { get; set; }
-        public int WeeklyGoal { get; set; }
+        public double WeeklyGoal { get; set; }
 
     }
 }

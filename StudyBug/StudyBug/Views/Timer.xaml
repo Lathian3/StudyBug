@@ -28,12 +28,19 @@
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <Label Text="{Binding Name}" VerticalOptions="Center"/>
-                            <Label Text="{Binding currentTimeStudied}"/>
+                            <Label Text="{Binding Name}" VerticalOptions="Center"
+                                   FontSize="Title"
+                                   Padding="10"/>
                         </StackLayout>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
+            
+            <Label Text="Progress towards weekly goal"
+                   FontSize="Large"/>
+            
+            <ProgressBar Progress="{Binding DisplayProgress}"/>
+            
             <Button x:Name="StartTimer" Text="Start" Command="{Binding StartTimer}"/>
             <Button x:Name="PauseTiemr" Text="Pause" Command="{Binding StopTimer}"/>
             <Button Text="Save Session" Command="{Binding Save}"/>

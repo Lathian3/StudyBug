@@ -13,6 +13,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="App Settings"
+                FontSize="Title"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             <CarouselView
@@ -24,16 +25,25 @@
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <Label Text="Name" VerticalOptions="Center"/>
+                            <Label Text="Name" VerticalOptions="Center"
+                                   FontSize="Large"
+                                   Padding="10"/>
+                            
                             <Entry Text="{Binding Name}"/>
-                            <Label Text="Weekly Goal" VerticalOptions="Center"/>
+                            
+                            <Label Text="Weekly Goal" VerticalOptions="Center"
+                                   FontSize="Large"
+                                   Padding="10"/>
+                            
                             <Entry Text="{Binding WeeklyGoal}" Keyboard="Numeric" MaxLength="2"/>
+                            
                         </StackLayout>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
             <Label Text="Class Settings"
                 HorizontalOptions="Center"
+                   FontSize="Title"
                 />
             <CarouselView
                 ItemsSource="{Binding Courses}"
@@ -45,10 +55,18 @@
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <Label Text="{Binding Name}" VerticalOptions="Center"/>
+                            <Label Text="{Binding Name}" VerticalOptions="Center"
+                                   FontSize="Large"
+                                   Padding="10"/>
+                            
                             <Entry Text="{Binding Name}"/>
-                            <Label Text="Weekly Goal"/>
+                            
+                            <Label Text="Weekly Goal"
+                                   FontSize="Large"
+                                   Padding="10"/>
+                            
                             <Entry Text="{Binding Goal}"/>
+                            
                         </StackLayout>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>

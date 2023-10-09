@@ -34,7 +34,20 @@ namespace StudyBug.ViewModels
             Save = new AsyncCommand(Update);
             LoadCourses();
         }
-
+        string progress = (App.ActiveCourse.currentTimeStudied / (3600 * App.ActiveCourse.Goal)).ToString();
+        public string DisplayProgress
+        {
+            get => progress;
+            set
+            {
+                if (value == progress)
+                {
+                    return;
+                }
+                progress = value;
+                OnPropertyChanged();
+            }
+        }
         async Task LoadCourses()
         {
             Courses.Clear();
@@ -111,7 +124,7 @@ namespace StudyBug.ViewModels
             App.ActiveCourse.currentTimeStudied += .5;
             DisplayEllapsedTime = String.Format("{0:00}:{1:00}:{2:00}",
             ts.Hours, ts.Minutes, ts.Seconds);
-
+            DisplayProgress = (App.ActiveCourse.currentTimeStudied / (3600 * App.ActiveCourse.Goal)).ToString();
         }
 
     }
