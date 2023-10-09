@@ -4,7 +4,7 @@
              xmlns:vm="clr-namespace:StudyBug.ViewModels"
              x:Class="StudyBug.Views.Profile"
              Shell.NavBarIsVisible="False"
->
+             >
 
     <ContentPage.BindingContext>
         <vm:ProfileView/>
