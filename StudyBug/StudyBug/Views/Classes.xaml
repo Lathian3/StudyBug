@@ -16,6 +16,7 @@
             SeparatorVisibility="None"
             SelectedItem="{Binding SelectedCourse, Mode=TwoWay}"
             HasUnevenRows="True"
+            IsPullToRefreshEnabled="True"
             >
             <ListView.Header>
                 
