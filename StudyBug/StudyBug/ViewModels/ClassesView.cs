@@ -66,7 +66,7 @@ namespace StudyBug.ViewModels
 
         async Task Add()
         {
-            var name = await App.Current.MainPage.DisplayPromptAsync("Name", "Name");
+            var name = await App.Current.MainPage.DisplayPromptAsync("Name", "Name", "OK", "");
             await DatabaseService.AddCourse(name);
             await Refresh();
         }
