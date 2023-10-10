@@ -44,6 +44,7 @@
             <Button x:Name="StartTimer" Text="Start" Command="{Binding StartTimer}"/>
             <Button x:Name="PauseTiemr" Text="Pause" Command="{Binding StopTimer}"/>
             <Button Text="Save Session" Command="{Binding Save}"/>
+            <Button Text="Refresh" Command="{Binding RefreshCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
