@@ -4,6 +4,7 @@
              xmlns:vm="clr-namespace:StudyBug.ViewModels"
              x:Class="StudyBug.Views.Timer"
              Title="{Binding Title}"
+             Shell.NavBarIsVisible="False"
              >
 
     <ContentPage.BindingContext>

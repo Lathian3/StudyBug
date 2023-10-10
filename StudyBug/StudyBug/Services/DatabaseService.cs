@@ -7,6 +7,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace StudyBug.Services
 {
@@ -18,7 +19,6 @@ namespace StudyBug.Services
             if (db == null)
             {
                 var databasePath = Path.Combine(FileSystem.AppDataDirectory, "Courses.db");
-
                 db = new SQLiteAsyncConnection(databasePath);
             }
             
@@ -26,6 +26,13 @@ namespace StudyBug.Services
             await db.CreateTableAsync<User>();
             await db.CreateTableAsync<Reminder>();
             
+        }
+
+        public static async Task DeleteDatabase()
+        {
+            await db.DropTableAsync<Course>();
+            await db.DropTableAsync<User>();
+            await db.DropTableAsync<Reminder>();
         }
         public static async Task AddCourse(string name)
         {

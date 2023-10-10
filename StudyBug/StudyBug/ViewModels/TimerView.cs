@@ -26,12 +26,14 @@ namespace StudyBug.ViewModels
             stopwatch.Reset();
         });
         public AsyncCommand Save { get; }
+        public AsyncCommand RefreshCommand { get; }
         public TimerView()
         {
             StartTimer = new Xamarin.Forms.Command(OnStart);
             StopTimer = new Xamarin.Forms.Command(OnPause);
             Courses = new ObservableRangeCollection<Course>();
             Save = new AsyncCommand(Update);
+            RefreshCommand = new AsyncCommand(Refresh);
             LoadCourses();
         }
         string progress = (App.ActiveCourse.currentTimeStudied / (3600 * App.ActiveCourse.Goal)).ToString();

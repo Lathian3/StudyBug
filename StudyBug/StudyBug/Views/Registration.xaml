@@ -10,9 +10,13 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Name"/>
+            <Label Text="Name/Username"
+                   FontSize="Large"
+                   Padding="10"/>
             <Entry Text="{Binding UserName}" ReturnType="Done"/>
-            <Label Text="Weekly Hour Goal"/>
+            <Label Text="Weekly Hours Studied Goal"
+                   FontSize="Large"
+                   Padding="10"/>
             <Entry Text="{Binding Goal}" ReturnType="Done" Keyboard="Numeric"/>
             <Button Text="Save" Command="{Binding Profile}"/>
         </StackLayout>

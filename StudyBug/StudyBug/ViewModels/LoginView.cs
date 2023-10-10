@@ -11,8 +11,16 @@ namespace StudyBug.ViewModels
     class LoginView : BindableObject
     {
         public ICommand LoginCommand { get; }
+        public ICommand DeleteAccount { get; }
         public LoginView() {
             LoginCommand = new Command(Login);
+            DeleteAccount = new Command(Delete);
+        }
+
+        public async void Delete()
+        {
+            await DatabaseService.DeleteDatabase();
+            await DatabaseService.Init();
         }
 
         public async void Login()
