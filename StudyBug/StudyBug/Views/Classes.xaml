@@ -37,7 +37,7 @@
                     <Button Text="Add Class" Command="{Binding AddCommand}"/>
                     <Button Text="Add Note" Command="{Binding ClassNotes}"/>
                     <Button Text="Save" Command="{Binding UpdateCommand}"/>
-                    <Button Text=“Refresh” Command=“{Binding refreshCommand}”/>
+                    <Button Text=“Refresh” Command=“{Binding RefreshCommand}”/>
                 </StackLayout>
             </ListView.Footer>
         </ListView>
