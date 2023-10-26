@@ -31,7 +31,6 @@ namespace StudyBug.ViewModels
             ClassNotes = new Xamarin.Forms.Command(notesPage);
             UpdateCommand = new AsyncCommand(Update);
             Courses = new ObservableRangeCollection<Course>();
-            
             Refresh();
         }
 

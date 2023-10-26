@@ -19,6 +19,7 @@ namespace StudyBug.ViewModels
     public class TimerView : BindableObject
     {
         public ObservableRangeCollection<Course> Courses { get; set; }
+
         public ICommand SetActiveCourse { get; }
         public ICommand CourseSelected => new Xamarin.Forms.Command<Course>((item) =>
         {   
@@ -34,7 +35,6 @@ namespace StudyBug.ViewModels
             Courses = new ObservableRangeCollection<Course>();
             Save = new AsyncCommand(Update);
             RefreshCommand = new AsyncCommand(Refresh);
-            LoadCourses();
         }
         string progress = (App.ActiveCourse.currentTimeStudied / (3600 * App.ActiveCourse.Goal)).ToString();
         public string DisplayProgress
@@ -49,12 +49,6 @@ namespace StudyBug.ViewModels
                 progress = value;
                 OnPropertyChanged();
             }
-        }
-        async Task LoadCourses()
-        {
-            Courses.Clear();
-            var courses = await DatabaseService.GetCourse();
-            Courses.AddRange(courses);
         }
 
         string EllapsedTime = "Start Studying";
@@ -71,7 +65,7 @@ namespace StudyBug.ViewModels
             await DatabaseService.Update(Courses);
             await Refresh();
         }
-        async Task Refresh()
+        public async Task Refresh()
         {
             Courses.Clear();
 
@@ -129,5 +123,44 @@ namespace StudyBug.ViewModels
             DisplayProgress = (App.ActiveCourse.currentTimeStudied / (3600 * App.ActiveCourse.Goal)).ToString();
         }
 
+        private Xamarin.Forms.Command pageAppearingCommand;
+
+        public ICommand PageAppearingCommand
+        {
+            get
+            {
+                if (pageAppearingCommand == null)
+                {
+                    pageAppearingCommand = new Xamarin.Forms.Command(PageAppearing);
+                }
+
+                return pageAppearingCommand;
+            }
+        }
+
+        private async void PageAppearing()
+        {
+            await Refresh();
+        }
+
+        private Xamarin.Forms.Command pageDisappearingCommand;
+
+        public ICommand PageDisappearingCommand
+        {
+            get
+            {
+                if (pageDisappearingCommand == null)
+                {
+                    pageDisappearingCommand = new Xamarin.Forms.Command(PageDisappearing);
+                }
+
+                return pageDisappearingCommand;
+            }
+        }
+
+        private async void PageDisappearing()
+        {
+            await Update();
+        }
     }
 }
