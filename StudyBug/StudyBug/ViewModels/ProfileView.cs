@@ -35,7 +35,7 @@ namespace StudyBug.ViewModels
             Courses.Clear();
             var course = await DatabaseService.GetCourse();
             Courses.AddRange(course);
-
+            await DatabaseService.GetUser();
             double previousTime = totalTimeStudied;
             foreach (var item in Courses)
             {
