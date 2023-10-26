@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:vm="clr-namespace:StudyBug.ViewModels"
+             xmlns:vm="clr-namespace:StudyBug.ViewModels" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="StudyBug.Views.Profile"
              Shell.NavBarIsVisible="False"
              >
@@ -9,6 +10,12 @@
     <ContentPage.BindingContext>
         <vm:ProfileView/>
     </ContentPage.BindingContext>
+
+    <ContentPage.Behaviors>
+        <xct:EventToCommandBehavior
+            EventName="Appearing"
+            Command="{Binding RefreshCommand}" />
+    </ContentPage.Behaviors>
 
     <ContentPage.Content>
 
@@ -30,7 +37,7 @@
                    FontSize="Large"/>
             <ProgressBar Progress="{Binding Progress}"/>
             <Button Text="App Settings" Command="{Binding GotoSettings}" />
-            <Button Text="Refresh" Command="{Binding RefreshCommand}"/>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

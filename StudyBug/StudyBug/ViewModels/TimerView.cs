@@ -20,7 +20,6 @@ namespace StudyBug.ViewModels
     {
         public ObservableRangeCollection<Course> Courses { get; set; }
 
-        public ICommand SetActiveCourse { get; }
         public ICommand CourseSelected => new Xamarin.Forms.Command<Course>((item) =>
         {   
             App.ActiveCourse = item;
@@ -35,6 +34,7 @@ namespace StudyBug.ViewModels
             Courses = new ObservableRangeCollection<Course>();
             Save = new AsyncCommand(Update);
             RefreshCommand = new AsyncCommand(Refresh);
+            Refresh();
         }
         string progress = (App.ActiveCourse.currentTimeStudied / (3600 * App.ActiveCourse.Goal)).ToString();
         public string DisplayProgress
@@ -67,10 +67,8 @@ namespace StudyBug.ViewModels
         }
         public async Task Refresh()
         {
-            Courses.Clear();
-
             var courses = await DatabaseService.GetCourse();
-
+            Courses.Clear();
             Courses.AddRange(courses);
         }
         public string DisplayEllapsedTime
@@ -140,7 +138,7 @@ namespace StudyBug.ViewModels
 
         private async void PageAppearing()
         {
-            await Refresh();
+            Courses.Clear();
         }
 
         private Xamarin.Forms.Command pageDisappearingCommand;
@@ -160,7 +158,7 @@ namespace StudyBug.ViewModels
 
         private async void PageDisappearing()
         {
-            await Update();
+            await DatabaseService.Update(Courses);
         }
     }
 }

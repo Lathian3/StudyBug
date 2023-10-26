@@ -31,7 +31,7 @@ namespace StudyBug.ViewModels
             ClassNotes = new Xamarin.Forms.Command(notesPage);
             UpdateCommand = new AsyncCommand(Update);
             Courses = new ObservableRangeCollection<Course>();
-            Refresh();
+            //Refresh();
         }
 
         
@@ -92,7 +92,43 @@ namespace StudyBug.ViewModels
             IsBusy = false;
         }
 
-        
+        private Xamarin.Forms.Command pageAppearingCommand;
+
+        public ICommand PageAppearingCommand
+        {
+            get
+            {
+                if (pageAppearingCommand == null)
+                {
+                    pageAppearingCommand = new Xamarin.Forms.Command(PageAppearing);
+                }
+
+                return pageAppearingCommand;
+            }
+        }
+
+        private void PageAppearing()
+        {
+        }
+
+        private Xamarin.Forms.Command pageDisappearingCommand;
+
+        public ICommand PageDisappearingCommand
+        {
+            get
+            {
+                if (pageDisappearingCommand == null)
+                {
+                    pageDisappearingCommand = new Xamarin.Forms.Command(PageDisappearing);
+                }
+
+                return pageDisappearingCommand;
+            }
+        }
+
+        private void PageDisappearing()
+        {
+        }
 
     }
 

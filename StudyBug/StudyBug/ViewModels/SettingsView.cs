@@ -29,14 +29,13 @@ namespace StudyBug.ViewModels
 
         public SettingsView()
         {
-            RefreshCommand = new AsyncCommand(Refresh);
+            RefreshCommand = new AsyncCommand(LoadData);
             AddCommand = new AsyncCommand(Add);
             RemoveCommand = new AsyncCommand(Remove);
             GotoProfile = new Xamarin.Forms.Command(ProfilePage);
             UpdateCommand = new AsyncCommand(Update);
             Courses = new ObservableRangeCollection<Course>();
             Users = new ObservableRangeCollection<User>();
-            LoadData();
         }
         public ObservableRangeCollection<Course> Courses { get; set; }
         public ObservableRangeCollection<User> Users { get; set; }
@@ -46,6 +45,7 @@ namespace StudyBug.ViewModels
             Courses.Clear();
             var courses = await DatabaseService.GetCourse();
             Courses.AddRange(courses);
+            Users.Clear();
             var users = await DatabaseService.GetUsers();
             Users.AddRange(users);
         }

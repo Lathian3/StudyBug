@@ -16,7 +16,7 @@
     <ContentPage.Behaviors>
         <xct:EventToCommandBehavior
                 EventName="Appearing"
-                Command="{Binding RefreshCommand}" />
+                Command="{Binding PageAppearingCommand}" />
         <xct:EventToCommandBehavior
                 EventName="Disappearing"
                 Command="{Binding PageDisappearingCommand}" />

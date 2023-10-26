@@ -26,7 +26,6 @@ namespace StudyBug.ViewModels
             GotoSettings = new Xamarin.Forms.Command(NavToSettings);
             Courses = new ObservableRangeCollection<Course>();
             RefreshCommand = new AsyncCommand(Refresh);
-            Refresh();
         }
 
         public double totalTimeStudied = 0;
@@ -44,6 +43,7 @@ namespace StudyBug.ViewModels
             }
             totalTimeStudied -= previousTime;
             Progress = (totalTimeStudied / (3600 * App.ActiveUser.WeeklyGoal)).ToString();
+            Greeting = "Hello,\n\t" + App.ActiveUser.Name;
         }
 
 
@@ -60,9 +60,11 @@ namespace StudyBug.ViewModels
                 OnPropertyChanged();
             }
         }
+        public string greeting = "Hello,\n\t" + App.ActiveUser.Name;
         public string Greeting
         {
-            get { return "Hello,\n\t" + App.ActiveUser.Name; }
+            get { return greeting; }
+            set { greeting = value; OnPropertyChanged(); }
         }
         private async void NavToSettings()
         {

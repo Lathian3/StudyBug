@@ -17,24 +17,12 @@ namespace StudyBug
 
         public static User ActiveUser;
 
-        public static ObservableRangeCollection<Course> CourseList;
-
-        public static ObservableCollection<User> UserList;
-
-        public static async Task RefreshCourses() {
-            CourseList.Clear();
-            var Courses = await DatabaseService.GetCourse();
-            CourseList.AddRange(Courses);
-        }
-
         public App()
         {
             InitializeComponent();
             MainPage = new AppShell();
             ActiveCourse = new Course();
             ActiveUser = new User();
-            CourseList = new ObservableRangeCollection<Course>();
-            UserList = new ObservableCollection<User>();
         }
 
         protected override void OnStart()

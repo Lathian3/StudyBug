@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:vm="clr-namespace:StudyBug.ViewModels"
+             xmlns:vm="clr-namespace:StudyBug.ViewModels" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="StudyBug.Views.Classes"
              Title="{Binding Title}"
              >
@@ -9,6 +10,15 @@
     <ContentPage.BindingContext>
         <vm:ClassesView/>
     </ContentPage.BindingContext>
+
+    <ContentPage.Behaviors>
+        <xct:EventToCommandBehavior
+            EventName="Appearing"
+            Command="{Binding RefreshCommand}" />
+        <xct:EventToCommandBehavior
+            EventName="Disappearing"
+            Command="{Binding UpdateCommand}" />
+    </ContentPage.Behaviors>
 
     <ContentPage.Content>
         <ListView
@@ -36,8 +46,6 @@
                 <StackLayout>
                     <Button Text="Add Class" Command="{Binding AddCommand}"/>
                     <Button Text="Add Note" Command="{Binding ClassNotes}"/>
-                    <Button Text="Save" Command="{Binding UpdateCommand}"/>
-                    <Button Text="Refresh" Command="{Binding RefreshCommand}"/>
                 </StackLayout>
             </ListView.Footer>
         </ListView>
