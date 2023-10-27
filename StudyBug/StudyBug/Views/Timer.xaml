@@ -5,8 +5,7 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="StudyBug.Views.Timer"
              Title="{Binding Title}"
-             Shell.NavBarIsVisible="False"
-             
+             Shell.NavBarIsVisible="False"           
              >
 
     <ContentPage.BindingContext>
@@ -55,7 +54,6 @@
             
             <Button x:Name="StartTimer" Text="Start" Command="{Binding StartTimer}"/>
             <Button x:Name="PauseTiemr" Text="Pause" Command="{Binding StopTimer}"/>
-            <Button Text="Save Session" Command="{Binding Save}"/>
             <Button Text="Refresh" Command="{Binding RefreshCommand}"/>
         </StackLayout>
     </ContentPage.Content>

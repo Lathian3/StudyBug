@@ -67,6 +67,7 @@ namespace StudyBug.ViewModels
         }
         public async Task Refresh()
         {
+            await DatabaseService.Update(Courses);
             var courses = await DatabaseService.GetCourse();
             Courses.Clear();
             Courses.AddRange(courses);
@@ -138,7 +139,7 @@ namespace StudyBug.ViewModels
 
         private async void PageAppearing()
         {
-            Courses.Clear();
+            //Courses.Clear();
         }
 
         private Xamarin.Forms.Command pageDisappearingCommand;
