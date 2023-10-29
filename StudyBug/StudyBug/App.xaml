@@ -8,26 +8,37 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="Primary">#2196F3</Color>
-            
-            <Style TargetType="Button">
-                <Setter Property="TextColor" Value="White"></Setter>
-                <Setter Property="VisualStateManager.VisualStateGroups">
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState x:Name="Normal">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="Disabled">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#332196F3" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </Setter>
+
+            <Color x:Key="PageBackgroundColor">black</Color>
+
+            <Color x:Key="CourseCardColor">Gray</Color>
+
+            <Color x:Key="mainButtonColor">transparent</Color>
+
+            <Color x:Key="ButtonTextColor">white</Color>
+
+            <Color x:Key="ButtonBorderColor">White</Color>
+
+            <Color x:Key="TextColor">White</Color>
+
+            <Color x:Key="TabBarColor">Black</Color>
+
+            <Color x:Key="ProgressBarColor">White</Color>
+
+            <Style x:Key="CourseCard" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource CourseCardColor}"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="CornerRadius" Value="20"/>
             </Style>
+
+            <Style x:Key="ButtonMain" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource mainButtonColor}"/>
+                <Setter Property="TextColor" Value="{StaticResource ButtonTextColor}"/>
+                <Setter Property="BorderColor" Value="{StaticResource ButtonBorderColor}"/>
+                <Setter Property="BorderWidth" Value="1"/>
+            </Style>
+
+            
         </ResourceDictionary>        
     </Application.Resources>
 </Application>

@@ -5,7 +5,8 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="StudyBug.Views.Timer"
              Title="{Binding Title}"
-             Shell.NavBarIsVisible="False"           
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource PageBackgroundColor}"
              >
 
     <ContentPage.BindingContext>
@@ -28,7 +29,8 @@
                    Padding="30" 
                    FontSize="60"
                    VerticalOptions="StartAndExpand"
-                   Text="{Binding DisplayEllapsedTime}"/>
+                   Text="{Binding DisplayEllapsedTime}"
+                   TextColor="{StaticResource TextColor}"/>
             <CarouselView
                 ItemsSource="{Binding Courses}"
                 CurrentItemChangedCommand="{Binding CourseSelected}"
@@ -38,23 +40,37 @@
                 >
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
+                        <Frame Style="{StaticResource CourseCard}">
                         <StackLayout>
                             <Label Text="{Binding Name}" VerticalOptions="Center"
+                                   TextColor="{StaticResource TextColor}"
                                    FontSize="Title"
-                                   Padding="10"/>
+                                   Padding="10"                                   
+                                   />
                         </StackLayout>
+                        </Frame>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
             
             <Label Text="Progress towards weekly goal"
+                   TextColor="{StaticResource TextColor}"
                    FontSize="Large"/>
             
-            <ProgressBar Progress="{Binding DisplayProgress}"/>
+            <ProgressBar Progress="{Binding DisplayProgress}"
+                         ProgressColor="{StaticResource ProgressBarColor}"/>
             
-            <Button x:Name="StartTimer" Text="Start" Command="{Binding StartTimer}"/>
-            <Button x:Name="PauseTiemr" Text="Pause" Command="{Binding StopTimer}"/>
-            <Button Text="Refresh" Command="{Binding RefreshCommand}"/>
+            <Button x:Name="StartTimer" 
+                    Text="Start" 
+                    Command="{Binding StartTimer}"
+                    Style="{StaticResource ButtonMain}"/>
+            <Button x:Name="PauseTiemr" 
+                    Text="Pause" 
+                    Command="{Binding StopTimer}"
+                    Style="{StaticResource ButtonMain}"/>
+            <Button Text="Refresh" 
+                    Command="{Binding RefreshCommand}"
+                    Style="{StaticResource ButtonMain}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

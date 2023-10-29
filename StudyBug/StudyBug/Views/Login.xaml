@@ -5,6 +5,7 @@
              x:Class="StudyBug.Views.Login"
              Shell.FlyoutBehavior="Disabled"
              Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource PageBackgroundColor}"
              >
 
     <ContentPage.BindingContext>
@@ -13,8 +14,13 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Login" Command="{Binding LoginCommand}" VerticalOptions="CenterAndExpand" />
-            <Button Text="Delete Account" Command="{Binding DeleteAccount}"/>
+            <Button Text="Login"
+                    Command="{Binding LoginCommand}" 
+                    VerticalOptions="CenterAndExpand"
+                    Style="{StaticResource ButtonMain}"/>
+            <Button Text="Delete Account" 
+                    Command="{Binding DeleteAccount}"
+                    Style="{StaticResource ButtonMain}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

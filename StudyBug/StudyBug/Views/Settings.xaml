@@ -5,6 +5,7 @@
              x:Class="StudyBug.Views.Settings"
              Shell.TabBarIsVisible="False"
              Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource PageBackgroundColor}"
              >
     <ContentPage.BindingContext>
         <vm:SettingsView/>
@@ -30,6 +31,7 @@
                 >
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
+                        <Frame Style="{StaticResource CourseCard}">
                         <StackLayout>
                             <Label Text="Name" VerticalOptions="Center"
                                    FontSize="Large"
@@ -44,6 +46,7 @@
                             <Entry Text="{Binding WeeklyGoal}" Keyboard="Numeric" MaxLength="2"/>
                             
                         </StackLayout>
+                        </Frame>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
@@ -57,9 +60,12 @@
                 CurrentItemChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=CurrentItem}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
+                BackgroundColor="Transparent"
                 >
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
+                        <Frame Style="{StaticResource CourseCard}"
+                               >
                         <StackLayout>
                             <Label Text="{Binding Name}" VerticalOptions="Center"
                                    FontSize="Large"
@@ -74,13 +80,21 @@
                             <Entry Text="{Binding Goal}"/>
                             
                         </StackLayout>
+                        </Frame>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
-            <Button Text="Save Changes" Command="{Binding GotoProfile}"/>
+            <Button Text="Save Changes" 
+                    Command="{Binding GotoProfile}"
+                    Style="{StaticResource ButtonMain}"/>
             <StackLayout Orientation="Horizontal">
-                <Button Text="Add Course"  Command="{Binding AddCommand}"/>
-                <Button Text="Delete Course" HorizontalOptions="EndAndExpand" Command="{Binding RemoveCommand}"/>
+                <Button Text="Add Course"  
+                        Command="{Binding AddCommand}"
+                        Style="{StaticResource ButtonMain}"/>
+                <Button Text="Delete Course" 
+                        HorizontalOptions="EndAndExpand" 
+                        Command="{Binding RemoveCommand}"
+                        Style="{StaticResource ButtonMain}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

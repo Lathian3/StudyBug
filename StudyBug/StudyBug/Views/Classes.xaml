@@ -5,6 +5,7 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="StudyBug.Views.Classes"
              Title="{Binding Title}"
+             BackgroundColor="{StaticResource PageBackgroundColor}"
              >
 
     <ContentPage.BindingContext>
@@ -23,13 +24,16 @@
     <ContentPage.Content>
         <ListView
             ItemsSource="{Binding Courses}"
-            SeparatorVisibility="None"
+            SeparatorVisibility="Default"
             SelectedItem="{Binding SelectedCourse, Mode=TwoWay}"
             HasUnevenRows="True"
+            SeparatorColor="Black"
+            
             >
             <ListView.Header>
                 
                 <Label Text="Select Class"
+                       TextColor="{StaticResource TextColor}"
                        FontSize="Title"
                        Padding="10"/>
                 
@@ -37,15 +41,19 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Name}" 
-                              TextColor="Black"
+                              TextColor="{StaticResource TextColor}"
                               Detail="{Binding Description}"
                               />
                 </DataTemplate>
             </ListView.ItemTemplate>
             <ListView.Footer>
                 <StackLayout>
-                    <Button Text="Add Class" Command="{Binding AddCommand}"/>
-                    <Button Text="Add Note" Command="{Binding ClassNotes}"/>
+                    <Button Text="Add Class" 
+                            Command="{Binding AddCommand}" 
+                            Style="{StaticResource ButtonMain}"/>
+                    <Button Text="Add Note" 
+                            Command="{Binding ClassNotes}" 
+                            Style="{StaticResource ButtonMain}"/>
                 </StackLayout>
             </ListView.Footer>
         </ListView>
