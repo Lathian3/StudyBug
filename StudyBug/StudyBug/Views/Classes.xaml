@@ -5,7 +5,7 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="StudyBug.Views.Classes"
              Title="{Binding Title}"
-             BackgroundColor="{StaticResource PageBackgroundColor}"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
              >
 
     <ContentPage.BindingContext>
@@ -24,26 +24,36 @@
     <ContentPage.Content>
         <ListView
             ItemsSource="{Binding Courses}"
-            SeparatorVisibility="Default"
             SelectedItem="{Binding SelectedCourse, Mode=TwoWay}"
             HasUnevenRows="True"
-            SeparatorColor="Black"
-            
+            SeparatorVisibility="None"
             >
-            <ListView.Header>
+        
+        <ListView.Header>
                 
                 <Label Text="Select Class"
-                       TextColor="{StaticResource TextColor}"
                        FontSize="Title"
-                       Padding="10"/>
+                       Padding="10"
+                       Style="{StaticResource Title}"/>
                 
             </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Name}" 
-                              TextColor="{StaticResource TextColor}"
-                              Detail="{Binding Description}"
-                              />
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Frame HorizontalOptions="CenterAndExpand"
+                                    Style="{StaticResource CourseCard}">
+                                <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Name}"
+                                    TextColor="{StaticResource TextColor}"/>
+                                </StackLayout>
+                                    <Label Text="{Binding Description}"
+                                           TextColor="{StaticResource TextColor}"/>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
             <ListView.Footer>

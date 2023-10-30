@@ -5,8 +5,7 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="StudyBug.Views.Profile"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="{StaticResource PageBackgroundColor}"
-             
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
              >
 
     <ContentPage.BindingContext>
@@ -24,8 +23,8 @@
         <StackLayout>
             <Label  
                 Text="{Binding Greeting}"
-                TextColor="{StaticResource TextColor}"
                 FontSize="50"
+                Style="{StaticResource Title}"
                 />
             <CarouselView>
                 <CarouselView.ItemTemplate>
@@ -38,9 +37,9 @@
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
-            <Label Text="Overall Progress"
-                   TextColor="{StaticResource TextColor}"
-                   FontSize="Large"/>
+            <Label Text="Overall Progress"                   
+                   FontSize="Large"
+                   Style="{StaticResource Title}"/>
             <ProgressBar Progress="{Binding Progress}"
                          ProgressColor="{StaticResource ProgressBarColor}"/>
             <Button Text="App Settings" 

@@ -1,41 +1,78 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="StudyBug.App">
+             x:Class="StudyBug.App"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
     <!--
         Define global resources and styles here, that apply to all pages in your app.
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Primary">white</Color>
+            
+            <Color x:Key="PageBackgroundColor">#8dc6bf</Color>
+            <Color x:Key="CourseCardColor">#584053</Color>
+            <Color x:Key="mainButtonColor">#584053</Color>
+            <Color x:Key="ButtonTextColor">#fcbc66</Color>
+            <Color x:Key="ButtonBorderColor">Black</Color>
+            <Color x:Key="TextColor">#fcbc66</Color>
+            <Color x:Key="TabBarColor">#584053</Color>
+            <Color x:Key="ProgressBarColor">#f97b4f</Color>
 
-            <Color x:Key="PageBackgroundColor">black</Color>
+            <Color x:Key="Theme1Background">#8dc6bf</Color>
+            <Color x:Key="Theme1Primary">#584053</Color>
+            <Color x:Key="Theme1Text">#fcbc66</Color>
+            <Color x:Key="Theme1TextDetail">#f97b4f</Color>
 
-            <Color x:Key="CourseCardColor">Gray</Color>
+            <Color x:Key="Theme2Background">#6f1d57</Color>
+            <Color x:Key="Theme2Primary">#e8789a</Color>
+            <Color x:Key="Theme2Text">#fcbd8b</Color>
+            <Color x:Key="Theme2TextDetail">#eddab9</Color>
 
-            <Color x:Key="mainButtonColor">transparent</Color>
+            <Color x:Key="Theme3Background">#1a2c79</Color>
+            <Color x:Key="Theme3Primary">#e80566</Color>
+            <Color x:Key="Theme3Text">#f4eabc</Color>
+            <Color x:Key="Theme3TextDetail">#ff8d68</Color>
 
-            <Color x:Key="ButtonTextColor">white</Color>
+            <Color x:Key="Theme4Background">#575a6c</Color>
+            <Color x:Key="Theme4Primary">#b4c540</Color>
+            <Color x:Key="Theme4Text">#e0e2d2</Color>
+            <Color x:Key="Theme4TextDetail">#3686c9</Color>
 
-            <Color x:Key="ButtonBorderColor">White</Color>
+            <Color x:Key="ThemeDarkBackground">#212121</Color>
+            <Color x:Key="ThemeDarkPrimary">#383838</Color>
+            <Color x:Key="ThemeDarkText">#05d8c1</Color>
+            <Color x:Key="ThemeDarkTextDetail">#c198fa</Color>
 
-            <Color x:Key="TextColor">White</Color>
+            <Style x:Key="Title" TargetType="Label">
+                <Setter Property="TextColor" Value='{DynamicResource TextColor}'/>
+                <Setter Property="BackgroundColor" Value="{DynamicResource mainButtonColor}"/>
+                <Setter Property="xct:CornerRadiusEffect.CornerRadius" Value="15"/>
+                <Setter Property="Padding" Value="7"/>
+            </Style>
 
-            <Color x:Key="TabBarColor">Black</Color>
+            <Style x:Key="Large" TargetType="Label">
+                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="TextColor" Value="{DynamicResource TextColor}"/>
+            </Style>
 
-            <Color x:Key="ProgressBarColor">White</Color>
-
+            <Style x:Key="Entry" TargetType="Entry">
+                <Setter Property="TextColor" Value="{DynamicResource TextColor}"/>
+            </Style>
+            
             <Style x:Key="CourseCard" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="{StaticResource CourseCardColor}"/>
+                <Setter Property="BackgroundColor" Value="{DynamicResource CourseCardColor}"/>
                 <Setter Property="HasShadow" Value="True"/>
-                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="CornerRadius" Value="10"/>
             </Style>
 
             <Style x:Key="ButtonMain" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="{StaticResource mainButtonColor}"/>
-                <Setter Property="TextColor" Value="{StaticResource ButtonTextColor}"/>
-                <Setter Property="BorderColor" Value="{StaticResource ButtonBorderColor}"/>
+                <Setter Property="BackgroundColor" Value="{DynamicResource mainButtonColor}"/>
+                <Setter Property="TextColor" Value="{DynamicResource ButtonTextColor}"/>
+                <Setter Property="BorderColor" Value="{DynamicResource ButtonBorderColor}"/>
                 <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="CornerRadius" Value="20"/>
             </Style>
 
             

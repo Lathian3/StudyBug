@@ -5,7 +5,7 @@
              x:Class="StudyBug.Views.Settings"
              Shell.TabBarIsVisible="False"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="{StaticResource PageBackgroundColor}"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
              >
     <ContentPage.BindingContext>
         <vm:SettingsView/>
@@ -22,7 +22,8 @@
             <Label Text="App Settings"
                 FontSize="Title"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand"
+                Style="{DynamicResource Title}"/>
             <CarouselView
                 ItemsSource="{Binding Users}"
                 VerticalOptions="Center"
@@ -34,26 +35,58 @@
                         <Frame Style="{StaticResource CourseCard}">
                         <StackLayout>
                             <Label Text="Name" VerticalOptions="Center"
-                                   FontSize="Large"
-                                   Padding="10"/>
+                                   Style="{StaticResource Large}"/>
                             
-                            <Entry Text="{Binding Name}"/>
+                            <Entry Text="{Binding Name}"
+                                   Style="{StaticResource Entry}"/>
                             
                             <Label Text="Weekly Goal" VerticalOptions="Center"
-                                   FontSize="Large"
-                                   Padding="10"/>
+                                   Style="{StaticResource Large}"/>
                             
-                            <Entry Text="{Binding WeeklyGoal}" Keyboard="Numeric" MaxLength="2"/>
+                            <Entry Text="{Binding WeeklyGoal}" 
+                                   Keyboard="Numeric" 
+                                   MaxLength="2"
+                                   Style="{StaticResource Entry}"/>
                             
                         </StackLayout>
                         </Frame>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
-            <Label Text="Class Settings"
-                HorizontalOptions="Center"
+            
+            <Label Text="App Colors"
                    FontSize="Title"
-                />
+                   HorizontalOptions="Center"
+                   Style="{StaticResource Title}"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <BoxView Color="{StaticResource Theme1Background}" xct:ShadowEffect.Color="Black"/>
+                <BoxView Color="{StaticResource Theme1Primary}" xct:ShadowEffect.Color="Black"/>
+                <BoxView Color="{StaticResource Theme1Text}" xct:ShadowEffect.Color="Black"/>
+                <CheckBox x:Name="Theme1Button" CheckedChanged="Theme1Button_CheckedChanged_1"/>
+                
+                <BoxView Color="{StaticResource Theme2Background}" xct:ShadowEffect.Color="Black"/>
+                <BoxView Color="{StaticResource Theme2Primary}" xct:ShadowEffect.Color="Black"/>
+                <BoxView Color="{StaticResource Theme2Text}" xct:ShadowEffect.Color="Black"/>
+                <CheckBox x:Name="Theme2Button" CheckedChanged="Theme2Button_CheckedChanged"/>
+
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <BoxView Color="{StaticResource Theme3Background}" xct:ShadowEffect.Color="Black"/>
+                <BoxView Color="{StaticResource Theme3Primary}" xct:ShadowEffect.Color="Black"/>
+                <BoxView Color="{StaticResource Theme3Text}" xct:ShadowEffect.Color="Black"/>
+                <CheckBox x:Name="Theme3Button" CheckedChanged="Theme3Button_CheckedChanged"/>
+                
+                <BoxView Color="{StaticResource Theme4Background}" xct:ShadowEffect.Color="Black"/>
+                <BoxView Color="{StaticResource Theme4Primary}" xct:ShadowEffect.Color="Black"/>
+                <BoxView Color="{StaticResource Theme4Text}" xct:ShadowEffect.Color="Black"/>
+                <CheckBox x:Name="Theme4Button" CheckedChanged="Theme4Button_CheckedChanged"/>
+            </StackLayout>
+
+            <Label Text="Class Settings"
+                   HorizontalOptions="Center"
+                   FontSize="Title"
+                   Style="{StaticResource Title}"/>
+            
             <CarouselView
                 ItemsSource="{Binding Courses}"
                 CurrentItemChangedCommand="{Binding CourseSelected}"
@@ -64,20 +97,21 @@
                 >
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
-                        <Frame Style="{StaticResource CourseCard}"
-                               >
-                        <StackLayout>
-                            <Label Text="{Binding Name}" VerticalOptions="Center"
-                                   FontSize="Large"
-                                   Padding="10"/>
+                        <Frame Style="{StaticResource CourseCard}">
                             
-                            <Entry Text="{Binding Name}"/>
+                        <StackLayout>
+                            <Label Text="{Binding Name}" 
+                                   VerticalOptions="Center"
+                                   Style="{StaticResource Large}"/>
+                            
+                            <Entry Text="{Binding Name}"
+                                   Style="{StaticResource Entry}"/>
                             
                             <Label Text="Weekly Goal"
-                                   FontSize="Large"
-                                   Padding="10"/>
+                                   Style="{StaticResource Large}"/>
                             
-                            <Entry Text="{Binding Goal}"/>
+                            <Entry Text="{Binding Goal}"
+                                   Style="{StaticResource Entry}"/>
                             
                         </StackLayout>
                         </Frame>

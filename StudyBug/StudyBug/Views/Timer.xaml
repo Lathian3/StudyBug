@@ -6,7 +6,7 @@
              x:Class="StudyBug.Views.Timer"
              Title="{Binding Title}"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="{StaticResource PageBackgroundColor}"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
              >
 
     <ContentPage.BindingContext>
@@ -30,7 +30,7 @@
                    FontSize="60"
                    VerticalOptions="StartAndExpand"
                    Text="{Binding DisplayEllapsedTime}"
-                   TextColor="{StaticResource TextColor}"/>
+                   Style="{StaticResource Title}"/>
             <CarouselView
                 ItemsSource="{Binding Courses}"
                 CurrentItemChangedCommand="{Binding CourseSelected}"
@@ -54,8 +54,8 @@
             </CarouselView>
             
             <Label Text="Progress towards weekly goal"
-                   TextColor="{StaticResource TextColor}"
-                   FontSize="Large"/>
+                   FontSize="Large"
+                   Style="{StaticResource Title}"/>
             
             <ProgressBar Progress="{Binding DisplayProgress}"
                          ProgressColor="{StaticResource ProgressBarColor}"/>
