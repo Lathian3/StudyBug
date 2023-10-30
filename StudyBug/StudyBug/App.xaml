@@ -8,7 +8,7 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">white</Color>
+            <Color x:Key="Primary">#8dc6bf</Color>
             
             <Color x:Key="PageBackgroundColor">#8dc6bf</Color>
             <Color x:Key="CourseCardColor">#584053</Color>

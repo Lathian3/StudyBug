@@ -110,8 +110,9 @@ namespace StudyBug.ViewModels
             }
         }
 
-        private void PageAppearing()
+        private async void PageAppearing()
         {
+            await Refresh();
         }
 
         private Xamarin.Forms.Command pageDisappearingCommand;
