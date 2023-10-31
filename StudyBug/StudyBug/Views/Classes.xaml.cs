@@ -17,5 +17,11 @@ namespace StudyBug.Views
 		{
 			InitializeComponent ();
 		}
+
+        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+			AddNote.IsEnabled = true;
+			AddReminder.IsEnabled = true;
+        }
     }
 }

@@ -19,8 +19,11 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="ClassLable" Text="{Binding CurrentCourse}" />
-            <Editor Text="{Binding CurrentDescription}" AutoSize="TextChanges"></Editor>
+            <Label x:Name="ClassLabel" Text="{Binding CurrentCourse}" />
+            <Editor Text="{Binding CurrentDescription}" 
+                    AutoSize="TextChanges"
+                    TextColor="{DynamicResource TextColor}">
+            </Editor>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

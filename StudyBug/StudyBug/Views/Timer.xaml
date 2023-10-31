@@ -37,6 +37,7 @@
                 CurrentItemChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=CurrentItem}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
+                IndicatorView="TimerindicatorView"
                 >
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
@@ -52,7 +53,11 @@
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
-            
+            <IndicatorView x:Name="TimerindicatorView"
+                IndicatorColor="white"
+                SelectedIndicatorColor="{DynamicResource ProgressBarColor}"
+                HorizontalOptions="Center"/>
+
             <Label Text="Progress towards weekly goal"
                    FontSize="Large"
                    Style="{StaticResource Title}"/>

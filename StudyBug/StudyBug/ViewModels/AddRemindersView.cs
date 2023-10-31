@@ -1,25 +1,23 @@
-﻿using MvvmHelpers.Commands;
-using StudyBug.Models;
-using StudyBug.Services;
+﻿using StudyBug.Services;
+using StudyBug.Views;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Xml.Linq;
 using Xamarin.Forms;
 
 namespace StudyBug.ViewModels
 {
-    class ClassNotesView : BindableObject
+    public class AddRemindersView : BindableObject
     {
-        public ClassNotesView() 
+        public AddRemindersView() 
         {
-            
+        
         }
 
-        string currDesc = App.ActiveCourse.Description;
+        string currDesc;
         string currentCourse = App.ActiveCourse.Name;
 
         public string CurrentCourse 
@@ -33,12 +31,11 @@ namespace StudyBug.ViewModels
             set
             {
                 currDesc = value;
-                App.ActiveCourse.Description = currDesc;
                 OnPropertyChanged();
             }
         }
 
-        private AsyncCommand save;
+        private Command save;
 
         public ICommand Save
         {
@@ -46,24 +43,23 @@ namespace StudyBug.ViewModels
             {
                 if (save == null)
                 {
-                    save = new AsyncCommand(PerformSaveAsync);
+                    save = new Command(PerformSave);
                 }
 
                 return save;
             }
         }
 
-        private async Task PerformSaveAsync()
+        private async void PerformSave()
         {
-            ObservableCollection<Course> courses = new ObservableCollection<Course>
+            if (currDesc != null) 
             {
-                App.ActiveCourse
-            };
-            await DatabaseService.Update(courses);
-
+                await DatabaseService.InsertReminder(currDesc, App.ActiveCourse);
+                var route = $"//{nameof(Classes)}";
+                await Shell.Current.GoToAsync(route);
+            }
         }
+
+
     }
-
-    
-
 }

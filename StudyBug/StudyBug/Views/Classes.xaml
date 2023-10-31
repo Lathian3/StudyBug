@@ -27,6 +27,7 @@
             SelectedItem="{Binding SelectedCourse, Mode=TwoWay}"
             HasUnevenRows="True"
             SeparatorVisibility="None"
+            ItemTapped="ListView_ItemTapped"
             >
         
         <ListView.Header>
@@ -58,11 +59,19 @@
             </ListView.ItemTemplate>
             <ListView.Footer>
                 <StackLayout>
-                    <Button Text="Add Class" 
+                    <Button x:Name="AddClass"
+                            Text="Add Class" 
                             Command="{Binding AddCommand}" 
                             Style="{StaticResource ButtonMain}"/>
-                    <Button Text="Add Note" 
+                    <Button x:Name="AddNote"
+                            IsEnabled="False"
+                            Text="Add Note" 
                             Command="{Binding ClassNotes}" 
+                            Style="{StaticResource ButtonMain}"/>
+                    <Button x:Name="AddReminder"
+                            IsEnabled="False"
+                            Text="Add Reminder"
+                            Command="{Binding ClassReminder}"
                             Style="{StaticResource ButtonMain}"/>
                 </StackLayout>
             </ListView.Footer>

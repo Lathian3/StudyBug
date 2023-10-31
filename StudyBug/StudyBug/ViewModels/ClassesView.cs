@@ -22,6 +22,7 @@ namespace StudyBug.ViewModels
         public AsyncCommand AddCommand { get; } 
         public AsyncCommand UpdateCommand { get; }
         public ICommand ClassNotes { get; }
+        public ICommand ClassReminder { get; }
         public ObservableRangeCollection<Course> Courses { get; }
         
         public ClassesView() {
@@ -29,6 +30,7 @@ namespace StudyBug.ViewModels
             RefreshCommand = new AsyncCommand(Refresh);
             AddCommand = new AsyncCommand(Add);
             ClassNotes = new Xamarin.Forms.Command(notesPage);
+            ClassReminder = new Xamarin.Forms.Command(remindersPage);
             UpdateCommand = new AsyncCommand(Update);
             Courses = new ObservableRangeCollection<Course>();
             //Refresh();
@@ -60,6 +62,11 @@ namespace StudyBug.ViewModels
         async public void notesPage() 
         {
             var route = $"{nameof(ClassNotes)}";
+            await Shell.Current.GoToAsync(route);
+        }
+        async public void remindersPage()
+        {
+            var route = $"{nameof(AddReminders)}";
             await Shell.Current.GoToAsync(route);
         }
 

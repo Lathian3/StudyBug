@@ -33,27 +33,27 @@
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         <Frame Style="{StaticResource CourseCard}">
-                        <StackLayout>
-                            <Label Text="Name" VerticalOptions="Center"
+                            <StackLayout>
+                                <Label Text="Name" VerticalOptions="Center"
                                    Style="{StaticResource Large}"/>
-                            
-                            <Entry Text="{Binding Name}"
+
+                                <Entry Text="{Binding Name}"
                                    Style="{StaticResource Entry}"/>
-                            
-                            <Label Text="Weekly Goal" VerticalOptions="Center"
+
+                                <Label Text="Weekly Goal" VerticalOptions="Center"
                                    Style="{StaticResource Large}"/>
-                            
-                            <Entry Text="{Binding WeeklyGoal}" 
+
+                                <Entry Text="{Binding WeeklyGoal}" 
                                    Keyboard="Numeric" 
                                    MaxLength="2"
                                    Style="{StaticResource Entry}"/>
-                            
-                        </StackLayout>
+
+                            </StackLayout>
                         </Frame>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
-            
+
             <Label Text="App Colors"
                    FontSize="Title"
                    HorizontalOptions="Center"
@@ -86,7 +86,8 @@
                    HorizontalOptions="Center"
                    FontSize="Title"
                    Style="{StaticResource Title}"/>
-            
+
+            <StackLayout>
             <CarouselView
                 ItemsSource="{Binding Courses}"
                 CurrentItemChangedCommand="{Binding CourseSelected}"
@@ -94,6 +95,7 @@
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 BackgroundColor="Transparent"
+                IndicatorView="indicatorView"
                 >
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
@@ -118,6 +120,12 @@
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
+            <IndicatorView x:Name="indicatorView"
+                   IndicatorColor="white"
+                   SelectedIndicatorColor="{DynamicResource ProgressBarColor}"
+                   HorizontalOptions="Center" />
+            </StackLayout>
+        
             <Button Text="Save Changes" 
                     Command="{Binding GotoProfile}"
                     Style="{StaticResource ButtonMain}"/>

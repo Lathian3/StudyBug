@@ -21,10 +21,12 @@ namespace StudyBug.ViewModels
         public AsyncCommand RefreshCommand { get; }
 
         public ObservableRangeCollection<Course> Courses { get; }
+        public ObservableRangeCollection<Reminder> Reminders { get; }
         public ProfileView()
         {
             GotoSettings = new Xamarin.Forms.Command(NavToSettings);
             Courses = new ObservableRangeCollection<Course>();
+            Reminders = new ObservableRangeCollection<Reminder>();
             RefreshCommand = new AsyncCommand(Refresh);
         }
 
@@ -35,6 +37,11 @@ namespace StudyBug.ViewModels
             Courses.Clear();
             var course = await DatabaseService.GetCourse();
             Courses.AddRange(course);
+
+            Reminders.Clear();
+            var reminders = await DatabaseService.GetAllReminders();
+            Reminders.AddRange(reminders);
+
             await DatabaseService.GetUser();
             double previousTime = totalTimeStudied;
             foreach (var item in Courses)

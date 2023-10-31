@@ -43,6 +43,25 @@ namespace StudyBug.Services
 
             await db.InsertAsync(course);
         }
+
+        public static async Task InsertReminder(string content, Course course) {
+
+            var reminder = new Reminder
+            {
+                CourseId = course.Id,
+                Content = content,
+                CourseName = course.Name
+            };
+            await db.InsertAsync(reminder);
+        }
+        public static async Task GetRemindersByCourse(Course course) {
+            await db.QueryAsync<Reminder>("SELECT * WHERE CourseID=?", course.Id);
+        }
+        public static async Task<IEnumerable<Reminder>> GetAllReminders()
+        {
+            return await db.Table<Reminder>().ToListAsync();
+        }
+
         public static async Task AddUser()
         {
             await db.InsertAsync(App.ActiveUser);

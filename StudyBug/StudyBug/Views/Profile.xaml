@@ -26,17 +26,7 @@
                 FontSize="50"
                 Style="{StaticResource Title}"
                 />
-            <CarouselView>
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame Style="{StaticResource CourseCard}">
-                        <StackLayout>
-                            
-                        </StackLayout>
-                        </Frame>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
+            
             <Label Text="Overall Progress"                   
                    FontSize="Large"
                    Style="{StaticResource Title}"/>
