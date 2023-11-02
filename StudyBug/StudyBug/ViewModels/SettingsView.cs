@@ -22,6 +22,8 @@ namespace StudyBug.ViewModels
         public AsyncCommand RemoveCommand { get; }
         public AsyncCommand UpdateCommand { get; }
         public ICommand GotoProfile { get; }
+
+        public ICommand GotoBreakSettings { get; }
         public ICommand CourseSelected => new Xamarin.Forms.Command<Course>((item) =>
         {
             App.ActiveCourse = item;
@@ -36,6 +38,7 @@ namespace StudyBug.ViewModels
             UpdateCommand = new AsyncCommand(Update);
             Courses = new ObservableRangeCollection<Course>();
             Users = new ObservableRangeCollection<User>();
+            GotoBreakSettings = new Xamarin.Forms.Command(BreakPage);
         }
         public ObservableRangeCollection<Course> Courses { get; set; }
         public ObservableRangeCollection<User> Users { get; set; }
@@ -54,6 +57,12 @@ namespace StudyBug.ViewModels
         {
             await Update();
             var route = $"//{nameof(Views.Profile)}";
+            await Shell.Current.GoToAsync(route);
+        }
+        async public void BreakPage()
+        {
+            await Update();
+            var route = $"{nameof(BreakSettings)}";
             await Shell.Current.GoToAsync(route);
         }
 

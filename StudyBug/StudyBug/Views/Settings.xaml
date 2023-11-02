@@ -129,6 +129,9 @@
             <Button Text="Save Changes" 
                     Command="{Binding GotoProfile}"
                     Style="{StaticResource ButtonMain}"/>
+            <Button Text="BreakSettings"
+                    Command="{Binding GotoBreakSettings}"
+                />
             <StackLayout Orientation="Horizontal">
                 <Button Text="Add Course"  
                         Command="{Binding AddCommand}"
