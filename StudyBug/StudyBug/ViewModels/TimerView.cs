@@ -92,12 +92,16 @@ namespace StudyBug.ViewModels
 
         public ICommand StartTimer { get; }
         public ICommand StopTimer { get; }
+        bool onbreak = false;
 
         void OnStart()
         {
+        if (onbreak == false)
+            {
             stopwatch.Start();
             break_countdown.Start();
             SetTimer();
+            }
         }
 
         void OnPause()
@@ -155,6 +159,7 @@ namespace StudyBug.ViewModels
                     App.Current.MainPage.DisplayAlert("Break Time!", "Time to take a break", "OK", "Snooze");
 
                 });
+                onbreak == true;
                 OnBreak();
                 break_countdown.Reset();
             }
@@ -179,6 +184,7 @@ namespace StudyBug.ViewModels
                 {
                     App.Current.MainPage.DisplayAlert("Study Time!", "Time to get back to work", "OK", "Snooze");
                 });
+                onbreak == false;
                 OffBreak();
             }
         }
