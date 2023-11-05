@@ -96,12 +96,14 @@ namespace StudyBug.ViewModels
         void OnStart()
         {
             stopwatch.Start();
+            break_countdown.Start();
             SetTimer();
         }
 
         void OnPause()
         { 
             stopwatch.Stop();
+            break_countdown.Stop();
             aTimer.Enabled = false;
         }
 
