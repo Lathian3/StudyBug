@@ -38,7 +38,7 @@ namespace StudyBug.ViewModels
             set
             {
                 length = value;
-                App.ActiveUser.break_frequency = int.Parse(interval);
+                App.ActiveUser.break_length = int.Parse(length);
                 OnPropertyChanged();
             }
         }
