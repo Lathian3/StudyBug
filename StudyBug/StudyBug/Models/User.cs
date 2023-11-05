@@ -12,6 +12,8 @@ namespace StudyBug.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public double WeeklyGoal { get; set; }
+        public int break_frequency { get; set; }
+        public int break_length { get; set; }
 
     }
 }
