@@ -53,7 +53,11 @@ namespace StudyBug.ViewModels
 
         string EllapsedTime = "Start Studying";
         Stopwatch stopwatch = new Stopwatch();
+        Stopwatch break_countdown = new Stopwatch();
+        Stopwatch breakTimer = new Stopwatch();
         TimeSpan ts;
+        TimeSpan timeUntilBreak;
+        TimeSpan break_length;
 
         string title = "Study Timer";
         public string Title
@@ -101,6 +105,21 @@ namespace StudyBug.ViewModels
             aTimer.Enabled = false;
         }
 
+        void OnBreak()
+        {
+            break_countdown.Reset();
+            OnPause();
+            breakTimer.Start();
+            StudyBreak();
+        }
+
+        void OffBreak()
+        {
+            breakTimer.Reset();
+            BreakTimer.Enabled = false;
+            OnStart();
+        }
+
         private System.Timers.Timer aTimer;
 
         private void SetTimer()
@@ -116,10 +135,50 @@ namespace StudyBug.ViewModels
         private async void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
             ts = stopwatch.Elapsed;
+            SetBreaks();
             App.ActiveCourse.currentTimeStudied += .5;
             DisplayEllapsedTime = String.Format("{0:00}:{1:00}:{2:00}",
             ts.Hours, ts.Minutes, ts.Seconds);
             DisplayProgress = (App.ActiveCourse.currentTimeStudied / (3600 * App.ActiveCourse.Goal)).ToString();
+        }
+
+        void SetBreaks()
+        {
+            timeUntilBreak = break_countdown.Elapsed;
+            //substitute 1 with App.ActiveUser.break_frequency once binding works
+            if (timeUntilBreak.Minutes == 1)
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    App.Current.MainPage.DisplayAlert("Break Time!", "Time to take a break", "OK", "Snooze");
+
+                });
+                OnBreak();
+                break_countdown.Reset();
+            }
+        }
+
+         private System.Timers.Timer BreakTimer = new System.Timers.Timer(500);
+        
+        void StudyBreak()
+        {
+                BreakTimer.Elapsed += OnBreakEvent;
+                BreakTimer.AutoReset = true;
+                BreakTimer.Enabled = true;
+        }
+        
+        private async void OnBreakEvent(Object source, ElapsedEventArgs e)
+        {
+           break_length = breakTimer.Elapsed;
+            //substitute 1 with App.ActiveUSer.break_length once binding works
+           if (break_length.Minutes == 1)
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    App.Current.MainPage.DisplayAlert("Study Time!", "Time to get back to work", "OK", "Snooze");
+                });
+                OffBreak();
+            }
         }
 
         private Xamarin.Forms.Command pageAppearingCommand;
