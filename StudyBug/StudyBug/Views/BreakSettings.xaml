@@ -1,8 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:vm="clr-namespace:StudyBug.ViewModels"
-             x:Class="StudyBug.Views.BreakSettings">
+             x:Class="StudyBug.Views.BreakSettings"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
 
     <ContentPage.BindingContext>
         <vm:BreakSettingsView/>
@@ -10,9 +13,23 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+           <Label Text="Break Interval"
+                   FontSize="Large"
+                   Padding="10"/>
+            <Entry Text="{Binding Break_Frequency}"
+                   Keyboard="Numeric" 
+                   MaxLength="2"
+                   Style="{StaticResource Entry}"/>
+            <Label Text="Break Length"
+                   FontSize="Large"
+                   Padding="10"/>
+            <Entry Text="{Binding Break_Length}"
+                   Keyboard="Numeric" 
+                   MaxLength="2"
+                   Style="{StaticResource Entry}"/>
+             <Button Text="Save Changes" 
+                    Command="{Binding Save}"
+                    Style="{StaticResource ButtonMain}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
