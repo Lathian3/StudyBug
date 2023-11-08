@@ -52,6 +52,12 @@ namespace StudyBug.ViewModels
 
     private async void gotoProfile() 
         {
+            DateTime loginTime = DateTime.Now;
+            App.ActiveUser.lastLoginDate = loginTime.ToBinary();
+
+            loginTime = new DateTime(2023, 11, 05);
+            App.ActiveUser.nextResetDate = loginTime.ToBinary();
+
             await DatabaseService.AddUser();
             var route = $"//{nameof(Profile)}";
             await Shell.Current.GoToAsync(route);

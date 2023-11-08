@@ -64,6 +64,8 @@ namespace StudyBug.Services
 
         public static async Task AddUser()
         {
+            DateTime dateTime = DateTime.Now;
+            App.ActiveUser.creationDate = dateTime.ToBinary();
             await db.InsertAsync(App.ActiveUser);
         }
 
@@ -84,7 +86,13 @@ namespace StudyBug.Services
             User user = await db.Table<User>().FirstOrDefaultAsync();
             App.ActiveUser = user;
         }
-
+        public static async Task UpdateUser(User user) {
+            List<User> users = new List<User>
+            {
+                user
+            };
+            await Update(users);
+        }
         public static async Task Update(IEnumerable objects)
         {
             await db.UpdateAllAsync(objects);

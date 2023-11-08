@@ -29,6 +29,7 @@
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 IsSwipeEnabled="False"
+                HeightRequest="300"
                 >
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
@@ -38,14 +39,6 @@
                                    Style="{StaticResource Large}"/>
 
                                 <Entry Text="{Binding Name}"
-                                   Style="{StaticResource Entry}"/>
-
-                                <Label Text="Weekly Goal" VerticalOptions="Center"
-                                   Style="{StaticResource Large}"/>
-
-                                <Entry Text="{Binding WeeklyGoal}" 
-                                   Keyboard="Numeric" 
-                                   MaxLength="2"
                                    Style="{StaticResource Entry}"/>
 
                             </StackLayout>

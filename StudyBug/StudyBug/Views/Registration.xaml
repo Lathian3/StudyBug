@@ -14,10 +14,7 @@
                    FontSize="Large"
                    Padding="10"/>
             <Entry Text="{Binding UserName}" ReturnType="Done"/>
-            <Label Text="Weekly Hours Studied Goal"
-                   FontSize="Large"
-                   Padding="10"/>
-            <Entry Text="{Binding Goal}" ReturnType="Done" Keyboard="Numeric"/>
+            
             <Button Text="Save" Command="{Binding Profile}"/>
         </StackLayout>
     </ContentPage.Content>

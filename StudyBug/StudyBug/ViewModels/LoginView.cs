@@ -35,10 +35,12 @@ namespace StudyBug.ViewModels
                 await Shell.Current.GoToAsync(route);
             }
             else {
+                DateTime loginTime = DateTime.Now;
+                App.ActiveUser.lastLoginDate = loginTime.ToBinary();
                 route = $"//{nameof(Profile)}";
                 await Shell.Current.GoToAsync(route);
             }
-
+            
         }
 
     }

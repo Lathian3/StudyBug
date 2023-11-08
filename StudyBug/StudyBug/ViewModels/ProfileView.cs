@@ -31,6 +31,9 @@ namespace StudyBug.ViewModels
         }
 
         public double totalTimeStudied = 0;
+        public DateTime dateCreated = new DateTime();
+        public DateTime currentTime = new DateTime();
+        public DateTime sundayTime = new DateTime(2023, 11, 05);
         
         public async Task Refresh()
         {
@@ -44,15 +47,45 @@ namespace StudyBug.ViewModels
 
             await DatabaseService.GetUser();
             double previousTime = totalTimeStudied;
+            int userGoal = 0;
+
+            dateCreated = DateTime.FromBinary(App.ActiveUser.creationDate);
+            currentTime = DateTime.Now;
+
+            await ResetTimesAsync();
+
             foreach (var item in Courses)
             {
                 totalTimeStudied += item.currentTimeStudied;
+                userGoal += item.Goal;
             }
             totalTimeStudied -= previousTime;
+            App.ActiveUser.WeeklyGoal = userGoal;
             Progress = (totalTimeStudied / (3600 * App.ActiveUser.WeeklyGoal)).ToString();
             Greeting = "Hello,\n\t" + App.ActiveUser.Name;
         }
 
+        public async Task ResetTimesAsync() {
+            DateTime now = DateTime.FromBinary(App.ActiveUser.lastLoginDate);
+            DateTime reset = DateTime.FromBinary(App.ActiveUser.nextResetDate);
+            if (reset < now) 
+            {
+                while (reset < now)
+                    {
+                        reset = reset.AddDays(7);
+                    }
+                App.ActiveUser.nextResetDate = reset.ToBinary();
+                foreach (var item in Courses) 
+                    {
+                    item.currentTimeStudied = 0;
+                    }
+                await DatabaseService.UpdateUser(App.ActiveUser);
+                await DatabaseService.Update(Courses);
+                await  Refresh();
+
+            }
+        
+        }
 
         string progress;
 
