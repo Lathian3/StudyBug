@@ -15,19 +15,40 @@
         <StackLayout>
            <Label Text="Break Interval"
                    FontSize="Large"
-                   Padding="10"/>
-            <Entry Text="{Binding Break_Frequency}"
-                   Keyboard="Numeric" 
-                   MaxLength="2"
-                   Style="{StaticResource Entry}"/>
+                   Padding="10"
+                   Style="{DynamicResource Title}"
+                  />
+                   
+            <Label x:Name="displayLabel"
+                   HorizontalOptions="Center"
+                   Text="{Binding Source={x:Reference Intervalslider},
+                              Path=Value,
+                              StringFormat='Minutes between break {0:F0}'}"
+                />
+            <Slider x:Name="Intervalslider"
+                    Maximum="120"
+                    DragCompletedCommand="{Binding SetFrequency}"
+                    Value="{Binding Break_Frequency}"
+                    ThumbColor="{DynamicResource mainButtonColor}"
+                    MinimumTrackColor="{DynamicResource ProgressBarColor}"
+                />
             <Label Text="Break Length"
                    FontSize="Large"
                    Padding="10"/>
-            <Entry Text="{Binding Break_Length}"
-                   Keyboard="Numeric" 
-                   MaxLength="2"
-                   Style="{StaticResource Entry}"/>
-             <Button Text="Save Changes" 
+            <Label 
+                   HorizontalOptions="Center"
+                   Text="{Binding Source={x:Reference Durationslider},
+                   Path=Value,
+                   StringFormat='Minutes between break {0:F0}'}"
+    />
+            <Slider x:Name="Durationslider"
+                    Maximum="30"
+                    DragCompletedCommand="{Binding SetDuration}"
+                    Value="{Binding Break_Length}"
+                    ThumbColor="{DynamicResource mainButtonColor}"
+                    MinimumTrackColor="{DynamicResource ProgressBarColor}"
+                        />  
+            <Button Text="Save Changes" 
                     Command="{Binding Save}"
                     Style="{StaticResource ButtonMain}"/>
         </StackLayout>

@@ -17,28 +17,47 @@ namespace StudyBug.ViewModels
         {
         }
 
-        string interval;
+        double interval = App.ActiveUser.break_frequency;
 
-        public string Break_Frequency
+        public int Break_Frequency
         {
-            get { return interval; }
+            get { return (int)Math.Floor(interval); }
             set
             {
                 interval = value;
-                App.ActiveUser.break_frequency = int.Parse(interval);
+                App.ActiveUser.break_frequency = (int)Math.Floor(interval);
                 OnPropertyChanged();
             }
         }
+        private Command setFrequency;
 
-        string length;
-
-        public string Break_Length
+        public ICommand SetFrequency
         {
-            get { return length; }
+            get
+            {
+                if (setFrequency == null)
+                {
+                    setFrequency = new Command(PerformSetFrequency);
+                }
+
+                return setFrequency;
+            }
+        }
+
+        private void PerformSetFrequency()
+        {
+            App.ActiveUser.break_frequency = Break_Frequency; 
+        }
+
+        double length = App.ActiveUser.break_length;
+
+        public int Break_Length
+        {
+            get { return (int)Math.Floor(length); }
             set
             {
                 length = value;
-                App.ActiveUser.break_length = int.Parse(length);
+                App.ActiveUser.break_length = (int)Math.Floor(length);
                 OnPropertyChanged();
             }
         }
@@ -59,12 +78,30 @@ namespace StudyBug.ViewModels
         }
 
         private async void PerformSave()
-        {
-            if (interval != null)
-            {
+        {           
+                await DatabaseService.UpdateUser(App.ActiveUser);
                 var route = $"{nameof(Settings)}";
-                await Shell.Current.GoToAsync(route);
+                await Shell.Current.GoToAsync(route);            
+        }
+
+        private Command setDuration;
+
+        public ICommand SetDuration
+        {
+            get
+            {
+                if (setDuration == null)
+                {
+                    setDuration = new Command(PerformSetDuration);
+                }
+
+                return setDuration;
             }
+        }
+
+        private void PerformSetDuration()
+        {
+            App.ActiveUser.break_length = Break_Length;
         }
 
     }
