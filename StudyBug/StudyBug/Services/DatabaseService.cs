@@ -44,14 +44,8 @@ namespace StudyBug.Services
             await db.InsertAsync(course);
         }
 
-        public static async Task InsertReminder(string content, Course course) {
+        public static async Task InsertReminder(Reminder reminder) {
 
-            var reminder = new Reminder
-            {
-                CourseId = course.Id,
-                Content = content,
-                CourseName = course.Name
-            };
             await db.InsertAsync(reminder);
         }
         public static async Task GetRemindersByCourse(Course course) {

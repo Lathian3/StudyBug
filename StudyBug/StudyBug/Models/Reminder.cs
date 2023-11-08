@@ -12,5 +12,6 @@ namespace StudyBug.Models
         public int CourseId { get; set; }
         public string CourseName { get; set; }
         public string Content { get; set; }
+        public long DueDate { get; set; }
     }
 }

@@ -19,6 +19,26 @@ namespace StudyBug.ViewModels
 
         string currDesc;
         string currentCourse = App.ActiveCourse.Name;
+        DateTime date = DateTime.Now;
+        TimeSpan time;
+        public DateTime Date { 
+            get { return date; }
+            set 
+            { 
+                date = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public TimeSpan Time
+        {
+            get { return time; }
+            set
+            {
+                time = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string CurrentCourse 
         {
@@ -54,12 +74,37 @@ namespace StudyBug.ViewModels
         {
             if (currDesc != null) 
             {
-                await DatabaseService.InsertReminder(currDesc, App.ActiveCourse);
+                App.ActiveReminder.Content = currDesc;
+                DateTime dateToSet = date + time;
+                App.ActiveReminder.DueDate = dateToSet.ToBinary();
+                await DatabaseService.InsertReminder(App.ActiveReminder);
                 var route = $"//{nameof(Classes)}";
                 await Shell.Current.GoToAsync(route);
             }
         }
 
+        private Command setupCommand;
+
+        public ICommand SetupCommand
+        {
+            get
+            {
+                if (setupCommand == null)
+                {
+                    setupCommand = new Command(Setup);
+                }
+
+                return setupCommand;
+            }
+        }
+
+        private void Setup()
+        {
+            App.ActiveReminder.CourseId = App.ActiveCourse.Id;
+            App.ActiveReminder.CourseName = App.ActiveCourse.Name;
+            DateTime now = DateTime.Now;
+            App.ActiveReminder.DueDate = now.ToBinary();
+        }
 
     }
 }

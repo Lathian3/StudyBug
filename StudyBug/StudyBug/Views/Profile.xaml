@@ -16,6 +16,10 @@
         <xct:EventToCommandBehavior
             EventName="Appearing"
             Command="{Binding RefreshCommand}" />
+        <xct:EventToCommandBehavior
+            EventName="Appearing"
+            Command="{Binding Update}" />
+        
     </ContentPage.Behaviors>
 
     <ContentPage.Content>
@@ -32,8 +36,8 @@
                     <RowDefinition Height="85"/>
                     <RowDefinition Height="85"/>
                     <RowDefinition Height="85"/>
-                    <RowDefinition Height="85"/>
-                    <RowDefinition Height="70"/>
+                    
+                    
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="85"/>
@@ -94,12 +98,40 @@
                          Grid.Column="3"
                          Color="White"/>
                 
-                <BoxView Grid.Row="3"
-                         Grid.ColumnSpan="4"
-                         Color="White"/>
+         
 
 
             </Grid>
+            <StackLayout>
+                <CarouselView
+                            ItemsSource="{Binding Reminders}"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            BackgroundColor="Transparent"
+                            IndicatorView="indicatorView"
+                            >
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Style="{StaticResource CourseCard}">
+
+                                <StackLayout>
+                                    <Label Text="{Binding CourseName}" 
+                                           VerticalOptions="Center"
+                                           Style="{StaticResource Large}"/> 
+
+                                    <Label Text="{Binding Content}"
+                                           Style="{StaticResource Large}"/>
+
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <IndicatorView x:Name="indicatorView"
+                               IndicatorColor="white"
+                               SelectedIndicatorColor="{DynamicResource ProgressBarColor}"
+                               HorizontalOptions="Center" /> 
+            </StackLayout>
             <Label Text="Overall Progress"                   
                    FontSize="Large"
                    Style="{StaticResource Title}"/>

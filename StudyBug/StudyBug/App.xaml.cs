@@ -17,12 +17,15 @@ namespace StudyBug
 
         public static User ActiveUser;
 
+        public static Reminder ActiveReminder;
+
         public App()
         {
             InitializeComponent();
             MainPage = new AppShell();
             ActiveCourse = new Course();
             ActiveUser = new User();
+            ActiveReminder = new Reminder();
         }
 
         protected override void OnStart()

@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:vm="clr-namespace:StudyBug.ViewModels"
+             xmlns:vm="clr-namespace:StudyBug.ViewModels" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="StudyBug.Views.AddReminders"
              >
     
@@ -10,14 +11,22 @@
         <vm:AddRemindersView/>
     </ContentPage.BindingContext>
 
+    <ContentPage.Behaviors>
+        <xct:EventToCommandBehavior
+        EventName="Appearing"
+        Command="{Binding SetupCommand}" />
+    </ContentPage.Behaviors>
+
     <ContentPage.Content>
         <StackLayout>
             <Label x:Name="ClassLabel" 
                    Text="{Binding CurrentCourse}" />
             <Editor Text="{Binding CurrentDescription}" 
-        AutoSize="TextChanges"
-        TextColor="{DynamicResource TextColor}">
+                   AutoSize="TextChanges"
+                   TextColor="{DynamicResource TextColor}">
             </Editor>
+            <DatePicker Date="{Binding Date}"/>
+            <TimePicker Time="{Binding Time}"/>
             <Button Text="Save"
                     Command="{Binding Save}"/>
         </StackLayout>

@@ -16,5 +16,6 @@ namespace StudyBug.Views
 		{
 			InitializeComponent ();
 		}
-	}
+
+    }
 }

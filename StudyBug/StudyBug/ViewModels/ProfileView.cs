@@ -37,12 +37,15 @@ namespace StudyBug.ViewModels
         
         public async Task Refresh()
         {
+            await Task.Delay(1000);
+
             Courses.Clear();
             var course = await DatabaseService.GetCourse();
             Courses.AddRange(course);
 
             Reminders.Clear();
             var reminders = await DatabaseService.GetAllReminders();
+            reminders = reminders.OrderBy(Reminder => DateTime.FromBinary(Reminder.DueDate));
             Reminders.AddRange(reminders);
 
             await DatabaseService.GetUser();

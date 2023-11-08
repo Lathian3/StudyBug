@@ -83,7 +83,6 @@ namespace StudyBug.ViewModels
         async Task Update()
         {
            await DatabaseService.Update(Courses);
-           await Refresh();
         }
 
         
