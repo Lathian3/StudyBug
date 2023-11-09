@@ -161,7 +161,7 @@ namespace StudyBug.ViewModels
                 {
                     App.Current.MainPage.DisplayAlert("Break Time!", "Time to take a break", "OK", "Snooze");
 
-                });
+                });                
                 onbreak = true;
                 OnBreak();
                 break_countdown.Reset();
@@ -229,6 +229,8 @@ namespace StudyBug.ViewModels
 
         private async void PageDisappearing()
         {
+            OnPause();
+            DisplayEllapsedTime = "Start Studying";
             await DatabaseService.Update(Courses);
         }
     }
