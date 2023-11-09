@@ -36,8 +36,6 @@
                     <RowDefinition Height="85"/>
                     <RowDefinition Height="85"/>
                     <RowDefinition Height="85"/>
-                    
-                    
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="85"/>
@@ -45,62 +43,48 @@
                     <ColumnDefinition Width="85"/>
                     <ColumnDefinition Width="85"/>
                 </Grid.ColumnDefinitions>
-                <BoxView Grid.Row="0"
-                         Grid.Column="0"
-                         Color="White"/>
-                <Label   Grid.Row="0"
-                         Grid.Column="0"
-                         Text="Hello"
-                         HorizontalOptions="Center"
-                         VerticalOptions="Center"
-                         />
-
-                
-                <ImageButton   BackgroundColor="Transparent"
-                         Grid.Row="0"
-                         Grid.Column="1"
-                         Source="smallBadge.png" />
-                <BoxView Grid.Row="0"
-                         Grid.Column="1"
-                         Color="#88ffffff"
-                         IsVisible="True"/>
-
-                <BoxView Grid.Row="0"
-                         Grid.Column="2"
-                         Color="White"/>
-                <BoxView Grid.Row="0"
-                         Grid.Column="3"
-                         Color="White"/>
-                
-                <BoxView Grid.Row="1"
-                         Grid.Column="0"
-                         Color="White"/>
-                <BoxView Grid.Row="1"
-                         Grid.Column="1"
-                         Color="White"/>
-                <BoxView Grid.Row="1"
-                         Grid.Column="2"
-                         Color="White"/>
-                <BoxView Grid.Row="1"
-                         Grid.Column="3"
-                         Color="White"/>
-                
-                <BoxView Grid.Row="2"
-                         Grid.Column="0"
-                         Color="White"/>
-                <BoxView Grid.Row="2"
-                         Grid.Column="1"
-                         Color="White"/>
-                <BoxView Grid.Row="2"
-                         Grid.Column="2"
-                         Color="White"/>
-                <BoxView Grid.Row="2"
-                         Grid.Column="3"
-                         Color="White"/>
-                
-         
-
-
+                <ImageButton Source="WelcomeAward.png"
+                             Grid.Row="0"
+                             Grid.Column="0"
+                             Opacity="1"/>
+                <ImageButton Source="RibbonOutline.png"
+                             Grid.Row="0"
+                             Grid.Column="1"
+                             Opacity=".5"/>
+                <ImageButton Source="Ribbon.png"
+                             Grid.Row="0"
+                             Grid.Column="2"
+                             Opacity=".5"/>
+                <ImageButton Source="FancyRibbon.png"
+                             Grid.Row="0"
+                             Grid.Column="3"
+                             Opacity=".5"/>
+                <ImageButton Source="outline.png"
+                             Grid.Row="1"
+                             Grid.Column="0"
+                             Opacity=".5"/>
+                <ImageButton Source="GoldandPurple.png"
+                             Grid.Row="1"
+                             Grid.Column="1"
+                             Opacity=".5"/>
+                <ImageButton Source="GoldPurpleWithBanner.png"
+                             Grid.Row="1"
+                             Grid.Column="2"
+                             Opacity=".5"/>
+                <ImageButton Source="GoldPurpleWithWings.png"
+                             Grid.Row="1"
+                             Grid.Column="3"
+                             Opacity=".5"/>
+                <ImageButton Source="trophy.png"
+                             Grid.Row="2"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="2"
+                             Opacity=".5"/>
+                <ImageButton Source="fancyTrophy.png"
+                             Grid.Row="2"
+                             Grid.Column="2"
+                             Grid.ColumnSpan="2"
+                             Opacity=".5"/>
             </Grid>
             <StackLayout>
                 <CarouselView

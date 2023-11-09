@@ -2,20 +2,27 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:vm="clr-namespace:StudyBug.ViewModels"
-             x:Class="StudyBug.Views.Registration">
+             x:Class="StudyBug.Views.Registration"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             Shell.NavBarIsVisible="False">
 
     <ContentPage.BindingContext>
         <vm:RegistrationView/>
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout VerticalOptions="Center">
+            
             <Label Text="Name/Username"
                    FontSize="Large"
-                   Padding="10"/>
-            <Entry Text="{Binding UserName}" ReturnType="Done"/>
+                   Padding="10"
+                   Style="{DynamicResource Title}"
+                   />
+            <Entry Text="{Binding UserName}" ReturnType="Done"
+                   Style="{DynamicResource Entry}"/>
             
-            <Button Text="Save" Command="{Binding Profile}"/>
+            <Button Text="Save" Command="{Binding Profile}"
+                    Style="{DynamicResource ButtonMain}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

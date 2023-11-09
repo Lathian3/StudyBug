@@ -4,7 +4,7 @@
              xmlns:vm="clr-namespace:StudyBug.ViewModels" 
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="StudyBug.Views.AddReminders"
-             >
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     
     
     <ContentPage.BindingContext>
@@ -20,15 +20,31 @@
     <ContentPage.Content>
         <StackLayout>
             <Label x:Name="ClassLabel" 
-                   Text="{Binding CurrentCourse}" />
+                   Text="{Binding CurrentCourse}" 
+                   Style="{DynamicResource Title}"
+                   FontSize="30"
+                   HorizontalOptions="Center"
+                   />
+            <Frame BackgroundColor="{DynamicResource mainButtonColor}"
+                   CornerRadius="20">
             <Editor Text="{Binding CurrentDescription}" 
                    AutoSize="TextChanges"
                    TextColor="{DynamicResource TextColor}">
             </Editor>
-            <DatePicker Date="{Binding Date}"/>
-            <TimePicker Time="{Binding Time}"/>
+            </Frame>
+            <Frame BackgroundColor="{DynamicResource mainButtonColor}"
+                   CornerRadius="20">
+            <DatePicker Date="{Binding Date}"
+                        TextColor="{DynamicResource TextColor}"/>
+            </Frame>
+            <Frame BackgroundColor="{DynamicResource mainButtonColor}"
+                   CornerRadius="20">
+            <TimePicker Time="{Binding Time}"
+                        TextColor="{DynamicResource TextColor}"/>
+            </Frame>
             <Button Text="Save"
-                    Command="{Binding Save}"/>
+                    Command="{Binding Save}"
+                    Style="{DynamicResource ButtonMain}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

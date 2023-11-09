@@ -22,6 +22,9 @@ namespace StudyBug.Views
         {
 			AddNote.IsEnabled = true;
 			AddReminder.IsEnabled = true;
+			((ListView)sender).SelectedItem = null;
         }
+
+    
     }
 }

@@ -57,6 +57,12 @@
                 <Setter Property="TextColor" Value="{DynamicResource TextColor}"/>
             </Style>
 
+            <Style x:Key="NoBackground" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="TextColor" Value="{DynamicResource mainButtonColor}"/>
+            </Style>
+
             <Style x:Key="Entry" TargetType="Entry">
                 <Setter Property="TextColor" Value="{DynamicResource TextColor}"/>
             </Style>

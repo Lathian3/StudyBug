@@ -19,11 +19,20 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="ClassLabel" Text="{Binding CurrentCourse}" />
-            <Editor Text="{Binding CurrentDescription}" 
+            <Label x:Name="ClassLabel" Text="{Binding CurrentCourse}"
+                   FontSize="30"
+                   HorizontalOptions="Center"
+                   Style="{DynamicResource Title}"
+                   Margin="10"/>
+            <Frame BackgroundColor="{DynamicResource mainButtonColor}"
+                   CornerRadius="10"
+                   Padding="10">
+                   
+                <Editor Text="{Binding CurrentDescription}" 
                     AutoSize="TextChanges"
                     TextColor="{DynamicResource TextColor}">
-            </Editor>
+                </Editor>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

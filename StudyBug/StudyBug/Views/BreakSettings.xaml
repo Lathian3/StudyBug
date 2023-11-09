@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:vm="clr-namespace:StudyBug.ViewModels"
              x:Class="StudyBug.Views.BreakSettings"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
@@ -20,10 +21,15 @@
                   />
                    
             <Label x:Name="displayLabel"
+                   Background="{DynamicResource mainButtonColor}"
+                   Padding="5"
+                   TextColor="{DynamicResource TextColor}"
+                   xct:CornerRadiusEffect.CornerRadius="10"
                    HorizontalOptions="Center"
                    Text="{Binding Source={x:Reference Intervalslider},
                               Path=Value,
                               StringFormat='Minutes between break {0:F0}'}"
+                   
                 />
             <Slider x:Name="Intervalslider"
                     Maximum="120"
@@ -34,9 +40,14 @@
                 />
             <Label Text="Break Length"
                    FontSize="Large"
-                   Padding="10"/>
+                   Padding="10"
+                   Style="{DynamicResource Title}"/>
             <Label 
                    HorizontalOptions="Center"
+                   Background="{DynamicResource mainButtonColor}"
+                   Padding="5"
+                   TextColor="{DynamicResource TextColor}"
+                   xct:CornerRadiusEffect.CornerRadius="10"
                    Text="{Binding Source={x:Reference Durationslider},
                    Path=Value,
                    StringFormat='Minutes between break {0:F0}'}"

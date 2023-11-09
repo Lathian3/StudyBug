@@ -112,16 +112,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <BundleResource Include="Resources\icon_about.png" />
-    <BundleResource Include="Resources\icon_about%402x.png" />
-    <BundleResource Include="Resources\icon_about%403x.png" />
-    <BundleResource Include="Resources\icon_feed.png" />
-    <BundleResource Include="Resources\icon_feed%402x.png" />
-    <BundleResource Include="Resources\icon_feed%403x.png" />
-    <BundleResource Include="Resources\xamarin_logo.png" />
-    <BundleResource Include="Resources\xamarin_logo%402x.png" />
-    <BundleResource Include="Resources\xamarin_logo%403x.png" />
-    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -150,5 +140,35 @@
       <Project>{2554DD1D-6F46-4EE9-B486-CD05C7A94F96}</Project>
       <Name>StudyBug</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\GoldPurpleWithWings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Outline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ribbon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\RibbonOutline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Trophy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\WelcomeAward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\FancyRibbon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\FancyTrophy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\GoldandPurple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\GoldPurpleWithBanner.png" />
   </ItemGroup>
 </Project>

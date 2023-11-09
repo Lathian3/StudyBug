@@ -4,7 +4,7 @@
              xmlns:vm="clr-namespace:StudyBug.ViewModels" 
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="StudyBug.Views.Classes"
-             Title="{Binding Title}"
+             
              BackgroundColor="{DynamicResource PageBackgroundColor}"
              >
 
@@ -24,10 +24,11 @@
     <ContentPage.Content>
         <ListView
             ItemsSource="{Binding Courses}"
-            SelectedItem="{Binding SelectedCourse, Mode=TwoWay}"
+            SelectedItem="{Binding SelectedCourse}"
             HasUnevenRows="True"
             SeparatorVisibility="None"
             ItemTapped="ListView_ItemTapped"
+            VerticalScrollBarVisibility="Always"
             >
         
         <ListView.Header>
