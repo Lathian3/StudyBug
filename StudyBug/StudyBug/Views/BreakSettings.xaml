@@ -14,6 +14,18 @@
     
     <ContentPage.Content>
         <StackLayout>
+           <Label Text="Enable Breaks?"
+                   FontSize="Large"
+                   Padding="10"
+                   Style="{DynamicResource Title}"
+                  />
+            <Switch x:Name="break_switch"
+                    IsToggled="true"
+                    HorizontalOptions="Center"
+                    OnColor="Green"
+                    ThumbColor="Green"
+                    Toggled="Switch_Toggled"
+                    />
            <Label Text="Break Interval"
                    FontSize="Large"
                    Padding="10"
