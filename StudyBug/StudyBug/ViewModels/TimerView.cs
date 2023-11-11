@@ -160,12 +160,12 @@ namespace StudyBug.ViewModels
         void SetBreaks()
         {
             timeUntilBreak = break_countdown.Elapsed;
-            //substitute 1 with App.ActiveUser.break_frequency once binding works
+           
             if (timeUntilBreak.Minutes == App.ActiveUser.break_frequency)
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    App.Current.MainPage.DisplayAlert("Break Time!", "Time to take a break", "OK", "Snooze");
+                    App.Current.MainPage.DisplayAlert("Break Time!", "Time to take a break", "OK");
 
                 });
                 OnBreak();
@@ -184,12 +184,12 @@ namespace StudyBug.ViewModels
         private async void OnBreakEvent(Object source, ElapsedEventArgs e)
         {
            break_length = breakTimer.Elapsed;
-            //substitute 1 with App.ActiveUSer.break_length once binding works
+            
            if (break_length.Minutes == App.ActiveUser.break_length)
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    App.Current.MainPage.DisplayAlert("Study Time!", "Time to get back to work", "OK", "Snooze");
+                    App.Current.MainPage.DisplayAlert("Study Time!", "Time to get back to work", "OK");
                 });
                 onbreak = false;
                 OffBreak();
@@ -232,7 +232,7 @@ namespace StudyBug.ViewModels
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    App.Current.MainPage.DisplayAlert("Break Time!", "Time to take a break", "OK", "Snooze");
+                    App.Current.MainPage.DisplayAlert("Break Time!", "Time to take a break", "OK");
 
                 });
                 OffSnooze();
