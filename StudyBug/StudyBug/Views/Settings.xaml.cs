@@ -32,6 +32,11 @@ namespace StudyBug.Views
                 App.Current.Resources["TextColor"] = App.Current.Resources["Theme1Text"];
                 App.Current.Resources["TabBarColor"] = App.Current.Resources["Theme1Background"];
                 App.Current.Resources["ProgressBarColor"] = App.Current.Resources["Theme1TextDetail"];
+
+                App.ActiveUser.Background = ((Color)App.Current.Resources["Theme1Background"]).ToHex();
+                App.ActiveUser.Primary = ((Color)App.Current.Resources["Theme1Primary"]).ToHex();
+                App.ActiveUser.Text = ((Color)App.Current.Resources["Theme1Text"]).ToHex();
+                App.ActiveUser.Detail = ((Color)App.Current.Resources["Theme1TextDetail"]).ToHex();
             }
         }
 
@@ -51,6 +56,11 @@ namespace StudyBug.Views
                 App.Current.Resources["TextColor"] = App.Current.Resources["Theme2Text"];
                 App.Current.Resources["TabBarColor"] = App.Current.Resources["Theme2Background"];
                 App.Current.Resources["ProgressBarColor"] = App.Current.Resources["Theme2TextDetail"];
+
+                App.ActiveUser.Background = ((Color)App.Current.Resources["Theme2Background"]).ToHex();
+                App.ActiveUser.Primary = ((Color)App.Current.Resources["Theme2Primary"]).ToHex()    ;
+                App.ActiveUser.Text = ((Color)App.Current.Resources["Theme2Text"]).ToHex();
+                App.ActiveUser.Detail = ((Color)App.Current.Resources["Theme2TextDetail"]).ToHex();
             }
         }
 
@@ -70,6 +80,11 @@ namespace StudyBug.Views
                 App.Current.Resources["TextColor"] = App.Current.Resources["Theme3Text"];
                 App.Current.Resources["TabBarColor"] = App.Current.Resources["Theme3Background"];
                 App.Current.Resources["ProgressBarColor"] = App.Current.Resources["Theme3TextDetail"];
+
+                App.ActiveUser.Background = ((Color)App.Current.Resources["Theme3Background"]).ToHex();
+                App.ActiveUser.Primary = ((Color)App.Current.Resources["Theme3Primary"]).ToHex();
+                App.ActiveUser.Text = ((Color)App.Current.Resources["Theme3Text"]).ToHex();
+                App.ActiveUser.Detail = ((Color)App.Current.Resources["Theme3TextDetail"]).ToHex();
             }
         }
 
@@ -89,6 +104,11 @@ namespace StudyBug.Views
                 App.Current.Resources["TextColor"] = App.Current.Resources["Theme4Text"];
                 App.Current.Resources["TabBarColor"] = App.Current.Resources["Theme4Background"];
                 App.Current.Resources["ProgressBarColor"] = App.Current.Resources["Theme4TextDetail"];
+
+                App.ActiveUser.Background = ((Color)App.Current.Resources["Theme4Background"]).ToHex();
+                App.ActiveUser.Primary = ((Color)App.Current.Resources["Theme4Primary"]).ToHex();
+                App.ActiveUser.Text = ((Color)App.Current.Resources["Theme4Text"]).ToHex();
+                App.ActiveUser.Detail = ((Color)App.Current.Resources["Theme4TextDetail"]).ToHex();
             }
         }
     }

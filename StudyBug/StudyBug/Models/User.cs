@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using Xamarin.Forms;
 
 namespace StudyBug.Models
 {
@@ -17,6 +17,9 @@ namespace StudyBug.Models
         public long creationDate { get; set; }
         public long nextResetDate { get; set; }
         public long lastLoginDate { get; set; }
-
+        public string Background { get; set; }
+        public string Primary { get; set; }
+        public string Text { get; set; }
+        public string Detail { get; set; }
     }
 }

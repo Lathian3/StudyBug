@@ -34,7 +34,9 @@ namespace StudyBug.ViewModels
         public DateTime dateCreated = new DateTime();
         public DateTime currentTime = new DateTime();
         public DateTime sundayTime = new DateTime(2023, 11, 05);
+
         
+
         public async Task Refresh()
         {
             await Task.Delay(1000);
@@ -66,6 +68,7 @@ namespace StudyBug.ViewModels
             App.ActiveUser.WeeklyGoal = userGoal;
             Progress = (totalTimeStudied / (3600 * App.ActiveUser.WeeklyGoal)).ToString();
             Greeting = "Hello,\n\t" + App.ActiveUser.Name;
+            CheckAchievements();
         }
 
         public async Task ResetTimesAsync() {
@@ -115,5 +118,135 @@ namespace StudyBug.ViewModels
             await Shell.Current.GoToAsync(route);
         }
 
+        float WelcomeAwardOpacity = 1;
+        float RibbonOutlineOpacity = .5f;
+        float RibbonOpacity = .5f;
+        float FancyRibbonOpacity = .5f;
+        float outlineOpacity = .5f;
+        float GoldandPurpleOpacity = .5f;
+        float GoldandPurpleWithBannerOpacity = .5f;
+        float GoldPurpleWithWingsOpacity = .5f;
+        float trophyOpacity = .5f;
+        float fancyTrophyOpacity = .5f;
+
+        public float welcomeAwardOpacity { get { return WelcomeAwardOpacity;}
+            set 
+            {
+                WelcomeAwardOpacity = value;
+                OnPropertyChanged();
+            }
+        }
+        public float ribbonOutlineOpacity
+        {
+            get { return RibbonOutlineOpacity; }
+            set
+            {
+                RibbonOutlineOpacity = value;
+                OnPropertyChanged();
+            }
+        }
+        public float ribbonOpacity
+        {
+            get { return RibbonOpacity; }
+            set
+            {
+                RibbonOpacity = value;
+                OnPropertyChanged();
+            }
+        }
+        public float fancyRibbonOpacity
+        {
+            get { return FancyRibbonOpacity; }
+            set
+            {
+                FancyRibbonOpacity = value;
+                OnPropertyChanged();
+            }
+        }
+        public float OutlineOpacity
+        {
+            get { return outlineOpacity; }
+            set
+            {
+                outlineOpacity = value;
+                OnPropertyChanged();
+            }
+        }
+        public float goldandPurpleOpacity
+        {
+            get { return GoldandPurpleOpacity; }
+            set
+            {
+                GoldandPurpleOpacity = value;
+                OnPropertyChanged();
+            }
+        }
+        public float goldandPurpleWithBannerOpacity
+        {
+            get { return GoldandPurpleWithBannerOpacity; }
+            set
+            {
+                GoldandPurpleWithBannerOpacity = value;
+                OnPropertyChanged();
+            }
+        }
+        public float goldPurpleWithWingsOpacity
+        {
+            get { return GoldPurpleWithWingsOpacity; }
+            set
+            {
+                GoldPurpleWithWingsOpacity = value;
+                OnPropertyChanged();
+            }
+        }
+        public float TrophyOpacity
+        {
+            get { return trophyOpacity; }
+            set
+            {
+                trophyOpacity = value;
+                OnPropertyChanged();
+            }
+        }
+        public float FancyTrophyOpacity
+        {
+            get { return fancyTrophyOpacity; }
+            set
+            {
+                fancyTrophyOpacity = value;
+                OnPropertyChanged();
+            }
+        }
+
+        void CheckAchievements()
+        {
+            if (false) {
+                ribbonOutlineOpacity = 1.0f;
+            }
+            if (false) {
+                ribbonOpacity = 1.0f;
+            }
+            if (false) {
+                fancyRibbonOpacity = 1.0f;
+            }
+            if (false) {
+                OutlineOpacity = 1.0f;
+            }
+            if (false) {
+                GoldandPurpleOpacity = 1.0f;
+            }
+            if (false) {
+                goldandPurpleWithBannerOpacity = 1.0f;
+            }
+            if (false) {
+                goldPurpleWithWingsOpacity = 1.0f;
+            }
+            if (totalTimeStudied >= (20 * 60 * 60) ) {
+                TrophyOpacity = 1.0f;
+            }
+            if (totalTimeStudied >= (40 * 60 * 60) ) {
+                FancyTrophyOpacity = 1.0f;
+            }
+        }
     }
 }

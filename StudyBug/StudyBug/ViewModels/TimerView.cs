@@ -129,7 +129,7 @@ namespace StudyBug.ViewModels
             OnStart();
         }
 
-        private System.Timers.Timer aTimer;
+        private System.Timers.Timer aTimer = new System.Timers.Timer();
 
         private void SetTimer()
         {

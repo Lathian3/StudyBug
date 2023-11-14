@@ -58,6 +58,11 @@ namespace StudyBug.ViewModels
             loginTime = new DateTime(2023, 11, 05);
             App.ActiveUser.nextResetDate = loginTime.ToBinary();
 
+            App.ActiveUser.Background = ((Color)App.Current.Resources["Theme1Background"]).ToHex();
+            App.ActiveUser.Primary = ((Color)App.Current.Resources["Theme1Primary"]).ToHex(); 
+            App.ActiveUser.Text = ((Color)App.Current.Resources["Theme1Text"]).ToHex();
+            App.ActiveUser.Detail = ((Color)App.Current.Resources["Theme1TextDetail"]).ToHex();
+
             await DatabaseService.AddUser();
             var route = $"//{nameof(Profile)}";
             await Shell.Current.GoToAsync(route);

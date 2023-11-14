@@ -15,6 +15,8 @@ namespace StudyBug.ViewModels
         public LoginView() {
             LoginCommand = new Command(Login);
             DeleteAccount = new Command(Delete);
+
+
         }
 
         public async void Delete()
@@ -37,6 +39,16 @@ namespace StudyBug.ViewModels
             else {
                 DateTime loginTime = DateTime.Now;
                 App.ActiveUser.lastLoginDate = loginTime.ToBinary();
+
+                App.Current.Resources["Primary"] = Color.FromHex(App.ActiveUser.Background);
+                App.Current.Resources["PageBackgroundColor"] = Color.FromHex(App.ActiveUser.Background);
+                App.Current.Resources["CourseCardColor"] = Color.FromHex(App.ActiveUser.Primary);
+                App.Current.Resources["mainButtonColor"] = Color.FromHex(App.ActiveUser.Primary);
+                App.Current.Resources["ButtonTextColor"] =  Color.FromHex(App.ActiveUser.Text);
+                App.Current.Resources["TextColor"] = Color.FromHex(App.ActiveUser.Text);
+                App.Current.Resources["TabBarColor"] = Color.FromHex(App.ActiveUser.Background);
+                App.Current.Resources["ProgressBarColor"] = Color.FromHex(App.ActiveUser.Detail);
+
                 route = $"//{nameof(Profile)}";
                 await Shell.Current.GoToAsync(route);
             }

@@ -22,7 +22,7 @@ namespace StudyBug.Views
             Device.BeginInvokeOnMainThread(() =>
             {
                 App.Current.MainPage.DisplayAlert("Welcome","Requirements: Create a user profile.\nWelcome to Study Bug!", "OK");
-            });
+            });            
         }
 
         private void RibbonOutline_Clicked(object sender, EventArgs e)
