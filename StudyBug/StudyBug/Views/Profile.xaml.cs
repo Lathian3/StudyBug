@@ -29,7 +29,7 @@ namespace StudyBug.Views
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                App.Current.MainPage.DisplayAlert("Achievement", "Requirements: Create a user profile.\nWelcome to Study Bug!", "OK");
+                App.Current.MainPage.DisplayAlert("Start Studying", "Requirements: Create a task to start tracking.", "OK");
             });
         }
 
@@ -37,7 +37,7 @@ namespace StudyBug.Views
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                App.Current.MainPage.DisplayAlert("Achievement", "Requirements: Create a user profile.\nWelcome to Study Bug!", "OK");
+                App.Current.MainPage.DisplayAlert("Mindful of the future", "Requirements: Add a reminder to a class", "OK");
             });
         }
 
@@ -45,7 +45,7 @@ namespace StudyBug.Views
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                App.Current.MainPage.DisplayAlert("Achievement", "Requirements: Create a user profile.\nWelcome to Study Bug!", "OK");
+                App.Current.MainPage.DisplayAlert("Fully Prepared", "Requirements: Created a task to track, reminder and set a weekly goal for the task", "OK");
             });
         }
 
@@ -53,7 +53,7 @@ namespace StudyBug.Views
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                App.Current.MainPage.DisplayAlert("Achievement", "Requirements: Create a user profile.\nWelcome to Study Bug!", "OK");
+                App.Current.MainPage.DisplayAlert("One down", "Requirements: Complete the weekly goal for a task", "OK");
             });
         }
 
@@ -61,7 +61,7 @@ namespace StudyBug.Views
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                App.Current.MainPage.DisplayAlert("Achievement", "Requirements: Create a user profile.\nWelcome to Study Bug!", "OK");
+                App.Current.MainPage.DisplayAlert("Half way there", "Requirements: Studied for half the total time of all task's goals", "OK");
             });
         }
 
@@ -69,7 +69,7 @@ namespace StudyBug.Views
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                App.Current.MainPage.DisplayAlert("Achievement", "Requirements: Create a user profile.\nWelcome to Study Bug!", "OK");
+                App.Current.MainPage.DisplayAlert("Put in the time", "Requirements: Studied for the total time of all task's goals", "OK");
             });
         }
 
@@ -77,7 +77,7 @@ namespace StudyBug.Views
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                App.Current.MainPage.DisplayAlert("Achievement", "Requirements: Create a user profile.\nWelcome to Study Bug!", "OK");
+                App.Current.MainPage.DisplayAlert("Timer Manager", "Requirements: Completed all task's goals for the week", "OK");
             });
         }
 

@@ -5,7 +5,7 @@
              x:Class="StudyBug.Views.Login"
              Shell.FlyoutBehavior="Disabled"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="{StaticResource PageBackgroundColor}"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
              >
 
     <ContentPage.BindingContext>

@@ -18,7 +18,9 @@
                    Padding="10"
                    Style="{DynamicResource Title}"
                    />
-            <Entry Text="{Binding UserName}" ReturnType="Done"
+            <Entry Placeholder="Name"
+                   MaxLength="20"
+                   Text="{Binding UserName}" ReturnType="Done"
                    Style="{DynamicResource Entry}"/>
             
             <Button Text="Save" Command="{Binding Profile}"

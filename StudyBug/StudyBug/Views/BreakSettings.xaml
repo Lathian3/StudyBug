@@ -19,13 +19,17 @@
                    Padding="10"
                    Style="{DynamicResource Title}"
                   />
-            <Switch x:Name="break_switch"
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="No" Style="{DynamicResource NoBackground}"/>
+                <Switch x:Name="break_switch"
                     IsToggled="true"
                     HorizontalOptions="Center"
                     OnColor="Green"
                     ThumbColor="Green"
                     Toggled="Switch_Toggled"
                     />
+                <Label Text="Yes" Style="{DynamicResource NoBackground}"/>
+            </StackLayout>
            <Label Text="Break Interval"
                    FontSize="Large"
                    Padding="10"
@@ -40,7 +44,7 @@
                    HorizontalOptions="Center"
                    Text="{Binding Source={x:Reference Intervalslider},
                               Path=Value,
-                              StringFormat='Minutes between break {0:F0}'}"
+                              StringFormat='Minutes between breaks {0:F0}'}"
                    
                 />
             <Slider x:Name="Intervalslider"
@@ -62,7 +66,7 @@
                    xct:CornerRadiusEffect.CornerRadius="10"
                    Text="{Binding Source={x:Reference Durationslider},
                    Path=Value,
-                   StringFormat='Minutes between break {0:F0}'}"
+                   StringFormat='Minutes during break {0:F0}'}"
     />
             <Slider x:Name="Durationslider"
                     Maximum="30"

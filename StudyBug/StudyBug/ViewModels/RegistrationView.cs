@@ -26,7 +26,7 @@ namespace StudyBug.ViewModels
 
         
 
-        string userName = "Name";
+        string userName = "";
         public string UserName
         {
             get { return userName; }

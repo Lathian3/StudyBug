@@ -35,7 +35,7 @@ namespace StudyBug.ViewModels
         public DateTime currentTime = new DateTime();
         public DateTime sundayTime = new DateTime(2023, 11, 05);
 
-        
+        int numGoalsMet = 0;
 
         public async Task Refresh()
         {
@@ -53,6 +53,7 @@ namespace StudyBug.ViewModels
             await DatabaseService.GetUser();
             double previousTime = totalTimeStudied;
             int userGoal = 0;
+            numGoalsMet = 0;
 
             dateCreated = DateTime.FromBinary(App.ActiveUser.creationDate);
             currentTime = DateTime.Now;
@@ -63,6 +64,9 @@ namespace StudyBug.ViewModels
             {
                 totalTimeStudied += item.currentTimeStudied;
                 userGoal += item.Goal;
+                if (item.currentTimeStudied >= item.Goal * 60 * 60) {
+                    numGoalsMet++;
+                }
             }
             totalTimeStudied -= previousTime;
             App.ActiveUser.WeeklyGoal = userGoal;
@@ -220,32 +224,68 @@ namespace StudyBug.ViewModels
 
         void CheckAchievements()
         {
-            if (false) {
+            if (Courses.Count != 0)
+            {
                 ribbonOutlineOpacity = 1.0f;
             }
-            if (false) {
+            else {
+                ribbonOutlineOpacity = 0.5f;
+            }
+            if (Reminders.Count != 0) {
                 ribbonOpacity = 1.0f;
             }
-            if (false) {
+            else
+            {
+                ribbonOpacity = 0.5f;
+            }
+            if (Courses.Count !=0 && Reminders.Count != 0 && App.ActiveUser.WeeklyGoal != 0) {
                 fancyRibbonOpacity = 1.0f;
             }
-            if (false) {
+            else
+            {
+                fancyRibbonOpacity = 0.5f;
+            }
+            if (numGoalsMet != 0) {
                 OutlineOpacity = 1.0f;
             }
-            if (false) {
-                GoldandPurpleOpacity = 1.0f;
+            else
+            {
+                OutlineOpacity = 0.5f;
             }
-            if (false) {
+            if (totalTimeStudied >= 1800 * App.ActiveUser.WeeklyGoal) {
+                goldandPurpleOpacity = 1.0f;
+            }
+            else
+            {
+                goldandPurpleOpacity = 0.5f;
+            }
+            if (totalTimeStudied >= 3600 * App.ActiveUser.WeeklyGoal) {
                 goldandPurpleWithBannerOpacity = 1.0f;
             }
-            if (false) {
+            else
+            {
+                goldandPurpleWithBannerOpacity = 0.5f;
+            }
+            if (numGoalsMet == Courses.Count) {
                 goldPurpleWithWingsOpacity = 1.0f;
+            }
+            else
+            {
+                goldPurpleWithWingsOpacity = 0.5f;
             }
             if (totalTimeStudied >= (20 * 60 * 60) ) {
                 TrophyOpacity = 1.0f;
             }
+            else
+            {
+                TrophyOpacity = 0.5f;
+            }
             if (totalTimeStudied >= (40 * 60 * 60) ) {
                 FancyTrophyOpacity = 1.0f;
+            }
+            else
+            {
+                FancyTrophyOpacity = 0.5f;
             }
         }
     }

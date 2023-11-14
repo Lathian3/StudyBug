@@ -94,21 +94,35 @@
                     <DataTemplate>
                         <Frame Style="{StaticResource CourseCard}">
                             
-                        <StackLayout>
-                            <Label Text="{Binding Name}" 
-                                   VerticalOptions="Center"
-                                   Style="{StaticResource Large}"/>
-                            
-                            <Entry Text="{Binding Name}"
-                                   Style="{StaticResource Entry}"/>
-                            
-                            <Label Text="Weekly Goal"
-                                   Style="{StaticResource Large}"/>
-                            
-                            <Entry Text="{Binding Goal}"
-                                   Style="{StaticResource Entry}"/>
-                            
-                        </StackLayout>
+                                 <StackLayout>
+                                     <Label Text="{Binding Name}" 
+                                            VerticalOptions="Center"
+                                            Style="{StaticResource Large}"/>
+                                     
+                                     <Entry Text="{Binding Name}"
+                                            Style="{StaticResource Entry}"/>
+
+                                             <Label Text="Weekly Goal"
+                                            Style="{StaticResource Large}"/>
+
+                                             <Slider x:Name="GoalSlider"
+                                             Value="{Binding Goal}"
+                                             Minimum="0"
+                                             Maximum="12"/>
+
+                                    <Label x:Name="displayLabel"
+                                           Background="{DynamicResource mainButtonColor}"
+                                           Padding="5"
+                                           TextColor="{DynamicResource TextColor}"
+                                           xct:CornerRadiusEffect.CornerRadius="10"
+                                           HorizontalOptions="Center"
+                                           Text="{Binding Source={x:Reference GoalSlider},
+                                           Path=Value,
+                                           StringFormat='Hours per week: {0:F0}'}"/>
+
+
+
+                                </StackLayout>
                         </Frame>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
