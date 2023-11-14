@@ -16,5 +16,17 @@ namespace StudyBug.Views
 		{
 			InitializeComponent ();
 		}
+  		 void Switch_Toggled(System.Object sender, Xamarin.Forms.ToggledEventArgs e)
+        	{
+
+			if (break_switch.IsToggled == true)
+			{
+				App.ActiveUser.breaks_enabled = true;
+			}
+			else
+			{
+				App.ActiveUser.breaks_enabled = false;
+			}
+        	}
 	}
 }

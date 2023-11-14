@@ -17,6 +17,8 @@ namespace StudyBug.Models
         public long creationDate { get; set; }
         public long nextResetDate { get; set; }
         public long lastLoginDate { get; set; }
+        public bool breaks_enabled { get; set; }
+
         public string Background { get; set; }
         public string Primary { get; set; }
         public string Text { get; set; }

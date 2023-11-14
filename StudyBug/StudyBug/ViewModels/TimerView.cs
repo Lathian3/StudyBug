@@ -1,4 +1,4 @@
-﻿using MvvmHelpers;
+using MvvmHelpers;
 using MvvmHelpers.Commands;
 using StudyBug.Models;
 using StudyBug.Services;
@@ -33,6 +33,7 @@ namespace StudyBug.ViewModels
             StopTimer = new Xamarin.Forms.Command(OnPause);
             Courses = new ObservableRangeCollection<Course>();
             Save = new AsyncCommand(Update);
+            Snooze = new Xamarin.Forms.Command(OnSnooze);
             RefreshCommand = new AsyncCommand(Refresh);
             //Refresh();
         }
@@ -55,10 +56,11 @@ namespace StudyBug.ViewModels
         Stopwatch stopwatch = new Stopwatch();
         Stopwatch break_countdown = new Stopwatch();
         Stopwatch breakTimer = new Stopwatch();
+        Stopwatch snoozeTimer = new Stopwatch();
         TimeSpan ts;
         TimeSpan timeUntilBreak;
         TimeSpan break_length;
-
+        TimeSpan snooze;
         string title = "Study Timer";
         public string Title
         {
@@ -95,31 +97,35 @@ namespace StudyBug.ViewModels
 
         public ICommand StartTimer { get; }
         public ICommand StopTimer { get; }
+        public ICommand Snooze { get; }
         bool onbreak = false;
-
+        bool onsnooze = false;
         void OnStart()
         {
         if (onbreak == false)
             {
             stopwatch.Start();
-            break_countdown.Start();
+            if((App.ActiveUser.breaks_enabled == true) && (onsnooze == false))  break_countdown.Start();
+            if (onsnooze == true) snoozeTimer.Start();
             SetTimer();
             }
         }
 
         void OnPause()
-        { 
-            stopwatch.Stop();
-            break_countdown.Stop();
-            aTimer.Enabled = false;
+        {
+                stopwatch.Stop();
+                if ((App.ActiveUser.breaks_enabled == true) && (onsnooze == false)) break_countdown.Stop();
+                if (onsnooze == true) snoozeTimer.Stop();
+                aTimer.Enabled = false;
         }
 
         void OnBreak()
         {
-            break_countdown.Reset();
-            OnPause();
-            breakTimer.Start();
-            StudyBreak();
+                onbreak = true;
+                break_countdown.Reset();
+                OnPause();
+                breakTimer.Start();
+                StudyBreak();
         }
 
         void OffBreak()
@@ -144,7 +150,7 @@ namespace StudyBug.ViewModels
         private async void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
             ts = stopwatch.Elapsed;
-            SetBreaks();
+            if ((App.ActiveUser.breaks_enabled == true) && (onsnooze == false)) SetBreaks();
             App.ActiveCourse.currentTimeStudied += .5;
             DisplayEllapsedTime = String.Format("{0:00}:{1:00}:{2:00}",
             ts.Hours, ts.Minutes, ts.Seconds);
@@ -154,17 +160,15 @@ namespace StudyBug.ViewModels
         void SetBreaks()
         {
             timeUntilBreak = break_countdown.Elapsed;
-            //substitute 1 with App.ActiveUser.break_frequency once binding works
-            if (timeUntilBreak.Minutes == 1)
+           
+            if (timeUntilBreak.Minutes == App.ActiveUser.break_frequency)
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    App.Current.MainPage.DisplayAlert("Break Time!", "Time to take a break", "OK", "Snooze");
+                    App.Current.MainPage.DisplayAlert("Break Time!", "Time to take a break", "OK");
 
-                });                
-                onbreak = true;
+                });
                 OnBreak();
-                break_countdown.Reset();
             }
         }
 
@@ -180,18 +184,60 @@ namespace StudyBug.ViewModels
         private async void OnBreakEvent(Object source, ElapsedEventArgs e)
         {
            break_length = breakTimer.Elapsed;
-            //substitute 1 with App.ActiveUSer.break_length once binding works
-           if (break_length.Minutes == 1)
+            
+           if (break_length.Minutes == App.ActiveUser.break_length)
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    App.Current.MainPage.DisplayAlert("Study Time!", "Time to get back to work", "OK", "Snooze");
+                    App.Current.MainPage.DisplayAlert("Study Time!", "Time to get back to work", "OK");
                 });
                 onbreak = false;
                 OffBreak();
             }
         }
 
+        void OnSnooze()
+        {
+            if(onbreak == true)
+            {
+                onbreak = false;
+                OffBreak();
+                snoozeTimer.Start();
+                onsnooze = true;
+                BreakSnooze();
+            }
+        }
+
+        void OffSnooze()
+        {
+            snoozeTimer.Reset();
+            SnoozeTimer.Enabled = false;
+            onsnooze = false;
+            OnBreak();
+        }
+
+        private System.Timers.Timer SnoozeTimer = new System.Timers.Timer(500);
+
+        void BreakSnooze()
+        {
+            SnoozeTimer.Elapsed += OnSnoozeEvent;
+            SnoozeTimer.AutoReset = true;
+            SnoozeTimer.Enabled = true;
+        }
+
+        private async void OnSnoozeEvent(Object source, ElapsedEventArgs e)
+        {
+            snooze = snoozeTimer.Elapsed;
+            if(snooze.Minutes == 5)
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    App.Current.MainPage.DisplayAlert("Break Time!", "Time to take a break", "OK");
+
+                });
+                OffSnooze();
+            }
+        }
         private Xamarin.Forms.Command pageAppearingCommand;
 
         public ICommand PageAppearingCommand
@@ -229,8 +275,6 @@ namespace StudyBug.ViewModels
 
         private async void PageDisappearing()
         {
-            OnPause();
-            DisplayEllapsedTime = "Start Studying";
             await DatabaseService.Update(Courses);
         }
     }
