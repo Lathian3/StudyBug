@@ -104,9 +104,15 @@ namespace StudyBug.ViewModels
         {
         if (onbreak == false)
             {
-            stopwatch.Start();
-            if((App.ActiveUser.breaks_enabled == true) && (onsnooze == false))  break_countdown.Start();
-            if (onsnooze == true) snoozeTimer.Start();
+                if ((App.ActiveUser.breaks_enabled == true) && (onsnooze == false))
+                {
+                    if (App.ActiveUser.break_frequency == 0 || App.ActiveUser.break_length == 0)
+                        App.ActiveUser.breaks_enabled = false;
+
+                    break_countdown.Start();
+                }
+                stopwatch.Start();
+                if (onsnooze == true) snoozeTimer.Start();
             SetTimer();
             }
         }
