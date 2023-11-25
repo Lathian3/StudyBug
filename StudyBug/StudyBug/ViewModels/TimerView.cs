@@ -33,7 +33,6 @@ namespace StudyBug.ViewModels
             StopTimer = new Xamarin.Forms.Command(OnPause);
             Courses = new ObservableRangeCollection<Course>();
             Save = new AsyncCommand(Update);
-            Snooze = new Xamarin.Forms.Command(OnSnooze);
             RefreshCommand = new AsyncCommand(Refresh);
             //Refresh();
         }
@@ -97,7 +96,6 @@ namespace StudyBug.ViewModels
 
         public ICommand StartTimer { get; }
         public ICommand StopTimer { get; }
-        public ICommand Snooze { get; }
         bool onbreak = false;
         bool onsnooze = false;
         void OnStart()
@@ -108,11 +106,11 @@ namespace StudyBug.ViewModels
                 {
                     if (App.ActiveUser.break_frequency == 0 || App.ActiveUser.break_length == 0)
                         App.ActiveUser.breaks_enabled = false;
-
+                    else
                     break_countdown.Start();
                 }
-                stopwatch.Start();
-                if (onsnooze == true) snoozeTimer.Start();
+            stopwatch.Start();
+            if (onsnooze == true) snoozeTimer.Start();
             SetTimer();
             }
         }
@@ -136,6 +134,7 @@ namespace StudyBug.ViewModels
 
         void OffBreak()
         {
+            onbreak = false;
             breakTimer.Reset();
             BreakTimer.Enabled = false;
             OnStart();
@@ -169,12 +168,14 @@ namespace StudyBug.ViewModels
            
             if (timeUntilBreak.Minutes == App.ActiveUser.break_frequency)
             {
-                Device.BeginInvokeOnMainThread(() =>
+                Device.BeginInvokeOnMainThread(async () =>
                 {
-                    App.Current.MainPage.DisplayAlert("Break Time!", "Time to take a break", "OK");
-
+                    OnPause();
+                    bool answer = await App.Current.MainPage.DisplayAlert("Break Time!", "Time to take a break", "OK", "Snooze");
+                    if (answer == true) OnBreak();
+                    else OnSnooze();
                 });
-                OnBreak();
+              
             }
         }
 
@@ -187,7 +188,7 @@ namespace StudyBug.ViewModels
                 BreakTimer.Enabled = true;
         }
         
-        private async void OnBreakEvent(Object source, ElapsedEventArgs e)
+        private void OnBreakEvent(Object source, ElapsedEventArgs e)
         {
            break_length = breakTimer.Elapsed;
             
@@ -197,21 +198,16 @@ namespace StudyBug.ViewModels
                 {
                     App.Current.MainPage.DisplayAlert("Study Time!", "Time to get back to work", "OK");
                 });
-                onbreak = false;
                 OffBreak();
             }
         }
 
         void OnSnooze()
         {
-            if(onbreak == true)
-            {
-                onbreak = false;
-                OffBreak();
-                snoozeTimer.Start();
-                onsnooze = true;
-                BreakSnooze();
-            }
+            onsnooze = true;
+            OnStart();
+            snoozeTimer.Start();
+            BreakSnooze();
         }
 
         void OffSnooze()
@@ -231,17 +227,18 @@ namespace StudyBug.ViewModels
             SnoozeTimer.Enabled = true;
         }
 
-        private async void OnSnoozeEvent(Object source, ElapsedEventArgs e)
+        private void OnSnoozeEvent(Object source, ElapsedEventArgs e)
         {
             snooze = snoozeTimer.Elapsed;
             if(snooze.Minutes == 5)
             {
-                Device.BeginInvokeOnMainThread(() =>
+                Device.BeginInvokeOnMainThread(async () =>
                 {
-                    App.Current.MainPage.DisplayAlert("Break Time!", "Time to take a break", "OK");
-
+                    OnPause();
+                    bool answer = await App.Current.MainPage.DisplayAlert("Break Time!", "Time to take a break", "OK", "Snooze");
+                    if (answer == true) OffSnooze();
+                    else snoozeTimer.Reset();
                 });
-                OffSnooze();
             }
         }
         private Xamarin.Forms.Command pageAppearingCommand;
