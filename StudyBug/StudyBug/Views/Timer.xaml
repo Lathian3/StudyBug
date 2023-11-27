@@ -73,9 +73,6 @@
                     Text="Pause" 
                     Command="{Binding StopTimer}"
                     Style="{StaticResource ButtonMain}"/>
-             <Button Text="Snooze Break"
-                    Command="{Binding Snooze}"
-                    Style="{StaticResource ButtonMain}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
