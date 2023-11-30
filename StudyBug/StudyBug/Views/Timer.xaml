@@ -25,8 +25,9 @@
     <ContentPage.Content>
         <StackLayout>
             <Label x:Name="TimerDisplay" 
-                   HorizontalOptions="CenterAndExpand" 
-                   Padding="30" 
+                   HorizontalOptions="Center" 
+                   Padding="30"
+                   Margin="5"
                    FontSize="60"
                    VerticalOptions="StartAndExpand"
                    Text="{Binding DisplayEllapsedTime}"
@@ -38,15 +39,17 @@
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 IndicatorView="TimerindicatorView"
+                Margin="5"
                 >
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         <Frame Style="{StaticResource CourseCard}">
-                        <StackLayout>
+                        <StackLayout
+                            VerticalOptions="Center">
                             <Label Text="{Binding Name}" VerticalOptions="Center"
+                                   HorizontalOptions="Center"
                                    TextColor="{StaticResource TextColor}"
-                                   FontSize="Title"
-                                   Padding="10"                                   
+                                   FontSize="30"                                   
                                    />
                         </StackLayout>
                         </Frame>
@@ -54,25 +57,30 @@
                 </CarouselView.ItemTemplate>
             </CarouselView>
             <IndicatorView x:Name="TimerindicatorView"
+                Margin="5"
                 IndicatorColor="white"
                 SelectedIndicatorColor="{DynamicResource ProgressBarColor}"
                 HorizontalOptions="Center"/>
 
             <Label Text="Progress towards weekly goal"
                    FontSize="Large"
-                   Style="{StaticResource Title}"/>
+                   Style="{StaticResource Title}"
+                   Margin="5"/>
             
             <ProgressBar Progress="{Binding DisplayProgress}"
-                         ProgressColor="{StaticResource ProgressBarColor}"/>
+                         ProgressColor="{StaticResource ProgressBarColor}"
+                         Margin="5"/>
             
             <Button x:Name="StartTimer" 
                     Text="Start" 
                     Command="{Binding StartTimer}"
-                    Style="{StaticResource ButtonMain}"/>
+                    Style="{StaticResource ButtonMain}"
+                    Margin="5"/>
             <Button x:Name="PauseTiemr" 
                     Text="Pause" 
                     Command="{Binding StopTimer}"
-                    Style="{StaticResource ButtonMain}"/>
+                    Style="{StaticResource ButtonMain}"
+                    Margin="5"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

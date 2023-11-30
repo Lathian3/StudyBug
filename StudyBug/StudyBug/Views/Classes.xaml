@@ -29,6 +29,7 @@
             SeparatorVisibility="None"
             ItemTapped="ListView_ItemTapped"
             VerticalScrollBarVisibility="Always"
+            Margin="5"
             >
         
         <ListView.Header>

@@ -20,11 +20,13 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="App Settings"
+                   Margin="5"
                 FontSize="Title"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"
                 Style="{DynamicResource Title}"/>
             <CarouselView
+                Margin="5"                
                 ItemsSource="{Binding Users}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
@@ -36,7 +38,8 @@
                         <Frame Style="{StaticResource CourseCard}">
                             <StackLayout>
                                 <Label Text="Name" VerticalOptions="Center"
-                                   Style="{StaticResource Large}"/>
+                                   Style="{StaticResource Large}"
+                                   Padding="0"/>
 
                                 <Entry Text="{Binding Name}"
                                    Style="{StaticResource Entry}"/>
@@ -50,7 +53,9 @@
             <Label Text="App Colors"
                    FontSize="Title"
                    HorizontalOptions="Center"
-                   Style="{StaticResource Title}"/>
+                   Style="{StaticResource Title}"
+                   Padding="5"/>
+            
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <BoxView Color="{StaticResource Theme1Background}" xct:ShadowEffect.Color="Black"/>
                 <BoxView Color="{StaticResource Theme1Primary}" xct:ShadowEffect.Color="Black"/>
@@ -78,10 +83,12 @@
             <Label Text="Class Settings"
                    HorizontalOptions="Center"
                    FontSize="Title"
-                   Style="{StaticResource Title}"/>
+                   Style="{StaticResource Title}"
+                   Padding="5"/>
 
             <StackLayout>
             <CarouselView
+                Margin="5"
                 ItemsSource="{Binding Courses}"
                 CurrentItemChangedCommand="{Binding CourseSelected}"
                 CurrentItemChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=CurrentItem}"
@@ -97,21 +104,26 @@
                           <StackLayout>
                               <Label Text="{Binding Name}" 
                                      VerticalOptions="Center"
-                                     Style="{StaticResource Large}"/>
+                                     Style="{StaticResource Large}"
+                                     Padding="0"/>
                               
                              <Entry Text="{Binding Name}"
                                      Style="{StaticResource Entry}"/>
                          
                              <Label Text="Weekly Goal"
-                                     Style="{StaticResource Large}"/>
+                                     Style="{StaticResource Large}"
+                                     FontSize="Medium"
+                                     Padding="0"/>
                               
                              <Label Text="{Binding Source={x:Reference goalStepper}, 
                                     Path=Value, StringFormat='Hours Per Week: {0:F0}'}" 
                                     Style="{StaticResource Large}"
-                                    HorizontalOptions="Center"/>
+                                    FontSize="Medium"
+                                    HorizontalOptions="Center"
+                                    Padding="0"/>
                               
                              <Stepper x:Name="goalStepper"
-                                      Minimum="0"
+                                      Minimum="0"                                      
                                       Value="{Binding Goal}"
                                       HorizontalOptions="Center"
                                  />
@@ -127,17 +139,21 @@
                    HorizontalOptions="Center" />
             </StackLayout>
         
-            <Button Text="Save Changes" 
+            <Button Text="Save Changes"
+                    Margin="5"
                     Command="{Binding GotoProfile}"
                     Style="{StaticResource ButtonMain}"/>
             <Button Text="Break Settings"
+                    Margin="5"
                     Command="{Binding GotoBreakSettings}"
                     Style="{StaticResource ButtonMain}"/>
             <StackLayout Orientation="Horizontal">
-                <Button Text="Add Course"  
+                <Button Text="Add Course"
+                        Margin="3"
                         Command="{Binding AddCommand}"
                         Style="{StaticResource ButtonMain}"/>
-                <Button Text="Delete Course" 
+                <Button Text="Delete Course"
+                        Margin="3"
                         HorizontalOptions="EndAndExpand" 
                         Command="{Binding RemoveCommand}"
                         Style="{StaticResource ButtonMain}"/>

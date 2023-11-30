@@ -15,10 +15,12 @@
     <ContentPage.Content>
         <StackLayout>
             <Button Text="Login"
+                    Margin="5"
                     Command="{Binding LoginCommand}" 
                     VerticalOptions="CenterAndExpand"
                     Style="{StaticResource ButtonMain}"/>
-            <Button Text="Delete Account" 
+            <Button Text="Delete Account"
+                    Margin="5"
                     Command="{Binding DeleteAccount}"
                     Style="{StaticResource ButtonMain}"/>
         </StackLayout>
