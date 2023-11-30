@@ -48,6 +48,7 @@
                    
                 />
             <Slider x:Name="Intervalslider"
+                    Minimum="1"
                     Maximum="120"
                     DragCompletedCommand="{Binding SetFrequency}"
                     Value="{Binding Break_Frequency}"
@@ -69,6 +70,7 @@
                    StringFormat='Minutes during break {0:F0}'}"
     />
             <Slider x:Name="Durationslider"
+                    Minimum="1"
                     Maximum="30"
                     DragCompletedCommand="{Binding SetDuration}"
                     Value="{Binding Break_Length}"
