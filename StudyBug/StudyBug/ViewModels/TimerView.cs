@@ -104,7 +104,7 @@ namespace StudyBug.ViewModels
             {
                 if ((App.ActiveUser.breaks_enabled == true) && (onsnooze == false))
                 {
-                    if (App.ActiveUser.break_frequency == 0 || App.ActiveUser.break_length == 0)
+                    if ((App.ActiveUser.break_frequency == 0) || (App.ActiveUser.break_length == 0))
                         App.ActiveUser.breaks_enabled = false;
                     else
                     break_countdown.Start();
@@ -126,7 +126,6 @@ namespace StudyBug.ViewModels
         void OnBreak()
         {
                 onbreak = true;
-                break_countdown.Reset();
                 OnPause();
                 breakTimer.Start();
                 StudyBreak();
@@ -171,6 +170,7 @@ namespace StudyBug.ViewModels
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     OnPause();
+                    break_countdown.Reset();
                     bool answer = await App.Current.MainPage.DisplayAlert("Break Time!", "Time to take a break", "OK", "Snooze");
                     if (answer == true) OnBreak();
                     else OnSnooze();
@@ -212,7 +212,6 @@ namespace StudyBug.ViewModels
 
         void OffSnooze()
         {
-            snoozeTimer.Reset();
             SnoozeTimer.Enabled = false;
             onsnooze = false;
             OnBreak();
@@ -235,6 +234,7 @@ namespace StudyBug.ViewModels
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     OnPause();
+                    snoozeTimer.Reset();
                     bool answer = await App.Current.MainPage.DisplayAlert("Break Time!", "Time to take a break", "OK", "Snooze");
                     if (answer == true) OffSnooze();
                     else snoozeTimer.Reset();

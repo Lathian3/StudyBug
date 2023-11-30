@@ -22,7 +22,6 @@
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Label Text="No" Style="{DynamicResource NoBackground}"/>
                 <Switch x:Name="break_switch"
-                    IsToggled="true"
                     HorizontalOptions="Center"
                     OnColor="Green"
                     ThumbColor="Green"
