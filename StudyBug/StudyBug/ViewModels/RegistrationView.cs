@@ -1,12 +1,7 @@
 ﻿using MvvmHelpers;
 using StudyBug.Models;
 using StudyBug.Services;
-using StudyBug.Views;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq.Expressions;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 

@@ -1,13 +1,6 @@
-﻿using MvvmHelpers;
-using StudyBug.Models;
+﻿using StudyBug.Models;
 using StudyBug.Services;
-using StudyBug.Views;
-using System;
-using System.Collections.ObjectModel;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace StudyBug
 {

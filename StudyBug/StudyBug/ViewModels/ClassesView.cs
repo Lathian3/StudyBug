@@ -3,19 +3,13 @@ using MvvmHelpers.Commands;
 using StudyBug.Models;
 using StudyBug.Services;
 using StudyBug.Views;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace StudyBug.ViewModels
 {
-    
+
     public class ClassesView : BindableObject
     {
         public  AsyncCommand RefreshCommand { get; }

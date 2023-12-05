@@ -1,7 +1,4 @@
-﻿using StudyBug.ViewModels;
-using StudyBug.Views;
-using System;
-using System.Collections.Generic;
+﻿using StudyBug.Views;
 using Xamarin.Forms;
 
 namespace StudyBug

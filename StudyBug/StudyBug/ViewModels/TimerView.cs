@@ -3,15 +3,10 @@ using MvvmHelpers.Commands;
 using StudyBug.Models;
 using StudyBug.Services;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Input;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace StudyBug.ViewModels

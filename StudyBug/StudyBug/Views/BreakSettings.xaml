@@ -48,6 +48,7 @@
                 />
             <Slider x:Name="Intervalslider"
                     Maximum="120"
+                    Minimum="1"
                     DragCompletedCommand="{Binding SetFrequency}"
                     Value="{Binding Break_Frequency}"
                     ThumbColor="{DynamicResource mainButtonColor}"
@@ -69,6 +70,7 @@
     />
             <Slider x:Name="Durationslider"
                     Maximum="30"
+                    Minimum="1"
                     DragCompletedCommand="{Binding SetDuration}"
                     Value="{Binding Break_Length}"
                     ThumbColor="{DynamicResource mainButtonColor}"
