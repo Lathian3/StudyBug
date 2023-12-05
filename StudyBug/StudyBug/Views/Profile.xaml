@@ -33,9 +33,9 @@
             <Grid Margin="10"
                   HorizontalOptions="Center">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="85"/>
-                    <RowDefinition Height="85"/>
-                    <RowDefinition Height="85"/>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="75"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="85"/>
@@ -110,6 +110,8 @@
             <StackLayout>
                 <CarouselView
                             ItemsSource="{Binding Reminders}"
+                            CurrentItemChangedCommand="{Binding ReminderSelected}"
+                            CurrentItemChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=CurrentItem}"
                             VerticalOptions="Center"
                             HorizontalOptions="Center"
                             BackgroundColor="Transparent"
@@ -118,15 +120,14 @@
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
                             <Frame Style="{StaticResource CourseCard}">
-
                                 <StackLayout>
                                     <Label Text="{Binding CourseName}" 
                                            VerticalOptions="Center"
-                                           Style="{StaticResource Large}"/> 
-
+                                           Style="{StaticResource Large}"
+                                           FontSize="Medium"/>
                                     <Label Text="{Binding Content}"
-                                           Style="{StaticResource Large}"/>
-
+                                           Style="{StaticResource Large}"
+                                           FontSize="Small"/>
                                 </StackLayout>
                             </Frame>
                         </DataTemplate>
@@ -135,7 +136,13 @@
                 <IndicatorView x:Name="indicatorView"
                                IndicatorColor="white"
                                SelectedIndicatorColor="{DynamicResource ProgressBarColor}"
-                               HorizontalOptions="Center" /> 
+                               HorizontalOptions="Center" />
+                <Button 
+                        Command="{Binding DeleteReminder}"
+                        Text="Delete Reminder"
+                        Style="{DynamicResource ButtonMain}"                        
+                        CornerRadius="20"
+                        IsVisible="{Binding DeleteReminderVisability}"/>
             </StackLayout>
             <Label Text="Overall Progress"                   
                    FontSize="Large"

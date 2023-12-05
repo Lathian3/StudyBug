@@ -19,7 +19,8 @@ namespace StudyBug.ViewModels
     {
         public ICommand GotoSettings { get; }
         public AsyncCommand RefreshCommand { get; }
-
+        public AsyncCommand DeleteReminder { get; }
+       
         public ObservableRangeCollection<Course> Courses { get; }
         public ObservableRangeCollection<Reminder> Reminders { get; }
         public ProfileView()
@@ -28,6 +29,7 @@ namespace StudyBug.ViewModels
             Courses = new ObservableRangeCollection<Course>();
             Reminders = new ObservableRangeCollection<Reminder>();
             RefreshCommand = new AsyncCommand(Refresh);
+            DeleteReminder = new AsyncCommand(deleteReminder);
         }
 
         public double totalTimeStudied = 0;
@@ -95,6 +97,14 @@ namespace StudyBug.ViewModels
 
             }
         
+        }
+
+        public async Task deleteReminder() {
+            if (Reminders.Count != 0)
+            {
+                await DatabaseService.RemoveReminder(App.ActiveReminder.Id);
+                Refresh();
+            }
         }
 
         string progress;
@@ -222,6 +232,16 @@ namespace StudyBug.ViewModels
             }
         }
 
+        string deleteReminderVisability = "false";
+        public string DeleteReminderVisability
+        { get { return deleteReminderVisability;}
+            set 
+            {
+                deleteReminderVisability = value;
+                OnPropertyChanged();
+            }
+        }
+
         void CheckAchievements()
         {
             if (Courses.Count != 0)
@@ -233,10 +253,12 @@ namespace StudyBug.ViewModels
             }
             if (Reminders.Count != 0) {
                 ribbonOpacity = 1.0f;
+                DeleteReminderVisability = "true";
             }
             else
             {
                 ribbonOpacity = 0.5f;
+                DeleteReminderVisability = "false";
             }
             if (Courses.Count !=0 && Reminders.Count != 0 && App.ActiveUser.WeeklyGoal != 0) {
                 fancyRibbonOpacity = 1.0f;
@@ -288,5 +310,10 @@ namespace StudyBug.ViewModels
                 FancyTrophyOpacity = 0.5f;
             }
         }
+
+        public ICommand ReminderSelected => new Xamarin.Forms.Command<Reminder>((item) =>
+        {
+            App.ActiveReminder = item;
+        });
     }
 }

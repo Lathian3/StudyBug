@@ -67,6 +67,10 @@ namespace StudyBug.Services
         {
             await db.DeleteAsync<Course>(id);
         }
+        public static async Task RemoveReminder(int id) 
+        {
+            await db.DeleteAsync<Reminder>(id);
+        }
         public static async Task<IEnumerable<Course>> GetCourse()
         {
             return await db.Table<Course>().ToListAsync();

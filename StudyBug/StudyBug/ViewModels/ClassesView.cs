@@ -66,6 +66,10 @@ namespace StudyBug.ViewModels
         }
         async public void remindersPage()
         {
+            if (App.ActiveReminder == null) 
+            {
+                App.ActiveReminder = new Reminder();
+            }
             var route = $"{nameof(AddReminders)}";
             await Shell.Current.GoToAsync(route);
         }

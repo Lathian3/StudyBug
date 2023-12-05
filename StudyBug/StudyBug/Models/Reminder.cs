@@ -14,4 +14,6 @@ namespace StudyBug.Models
         public string Content { get; set; }
         public long DueDate { get; set; }
     }
+
+    
 }
